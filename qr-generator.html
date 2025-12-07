@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>QR Generator – ToolNest</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@400;500;700&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <header>
+    <div class="header-inner">
+      <a href="../index.html" class="logo">ToolNest</a>
+      <button class="nav-toggle" onclick="toggleNav()"><span class="hamburger"></span></button>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="text-cleaner.html">Text Cleaner</a>
+        <a href="pdf-tools.html">PDF Tools</a>
+        <a href="image-tools.html">Image Tools</a>
+        <a href="base64-tools.html">Utilities</a>
+        <button class="donate-btn">Donate</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="tool-page">
+    <section class="tool-page-header">
+      <h1>QR Code Generator</h1>
+      <p class="tool-page-sub">Generate high-quality QR codes for URLs, text, and more</p>
+    </section>
+
+    <section class="panel">
+      <div class="lead">📌 Enter Content</div>
+      <input type="text" id="qrText" placeholder="Enter text, URL, email, phone number, or any content...">
+      <div id="qrError" style="display:none;color:#b00020;margin-top:.6rem;font-size:.95rem"></div>
+      <button id="generateBtn" class="btn-cta" onclick="generateQRCode()" style="margin-top:1rem">Generate QR
+        Code</button>
+    </section>
+
+    <section class="panel" id="qrResult" style="display:none">
+      <div class="lead">✨ Your QR Code</div>
+      <div id="qrTarget"
+        style="display:flex;justify-content:center;margin:1.5rem 0;padding:1rem;background:var(--accent-soft);border-radius:12px">
+      </div>
+      <div style="display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap">
+        <button class="btn-primary" onclick="downloadQR()">Download QR Code</button>
+        <button class="btn-primary" onclick="clearQR()">Generate New</button>
+      </div>
+    </section>
+
+    <section class="features">
+      <div class="feature-card">
+        <h3>🎨 High Quality</h3>
+        <p>Generate crisp, scannable QR codes that work with any standard reader.</p>
+      </div>
+      <div class="feature-card">
+        <h3>⚡ Instant Creation</h3>
+        <p>Create QR codes in real-time with no delays or server processing.</p>
+      </div>
+      <div class="feature-card">
+        <h3>📥 Easy Download</h3>
+        <p>Download your QR codes as high-resolution PNG images ready to use anywhere.</p>
+      </div>
+    </section>
+
+    <section class="panel" style="background:linear-gradient(135deg,var(--accent-soft),rgba(52,179,255,.02))">
+      <div class="lead">📖 How to Use</div>
+      <ol style="color:#555;line-height:1.9;margin-left:1.5rem">
+        <li><strong>Enter Content:</strong> Type or paste text, URL, email, phone number, or any data</li>
+        <li><strong>Generate:</strong> Click "Generate QR Code" to instantly create your QR code</li>
+        <li><strong>Preview:</strong> See your QR code displayed immediately on the screen</li>
+        <li><strong>Download:</strong> Click "Download QR Code" to save as PNG image</li>
+        <li><strong>Share:</strong> Use your QR code anywhere - print, digital, or web</li>
+      </ol>
+    </section>
+
+    <section class="panel" style="border-left:5px solid var(--accent-warm)">
+      <div class="lead">💡 Pro Tips</div>
+      <ul style="color:#666;line-height:2;margin-left:1.5rem">
+        <li><strong>URL Shortening:</strong> Long URLs work best when shortened before encoding</li>
+        <li><strong>Test First:</strong> Scan your QR code with multiple devices to ensure compatibility</li>
+        <li><strong>Size Matters:</strong> Larger QR codes scan faster, but smaller ones work fine</li>
+        <li><strong>High Contrast:</strong> Ensure good contrast between QR code and background</li>
+        <li><strong>Track Scans:</strong> Use URL shorteners to track QR code scan analytics</li>
+      </ul>
+    </section>
+
+    <div class="ad-placeholder">Advertisement Space</div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  <script>
+    let qrCodeInstance = null;
+    function generateQRCode() {
+      const text = document.getElementById('qrText').value.trim();
+      if (!text) { alert('Please enter content'); return }
+      document.getElementById('qrError').style.display = 'none';
+      document.getElementById('qrResult').style.display = 'block';
+      const target = document.getElementById('qrTarget');
+      target.innerHTML = '';
+      qrCodeInstance = new QRCode(target, { text: text, width: 200, height: 200 });
+    }
+    function downloadQR() {
+      if (!qrCodeInstance) { alert('Nothing to download'); return }
+      const canvas = document.querySelector('#qrTarget canvas');
+      canvas.toBlob(blob => {
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'qr.png';
+        a.click();
+      });
+    }
+    function clearQR() {
+      document.getElementById('qrText').value = '';
+      document.getElementById('qrResult').style.display = 'none';
+      document.getElementById('qrTarget').innerHTML = '';
+      qrCodeInstance = null;
+    }
+    function toggleNav() { document.querySelector('nav').classList.toggle('open'); }
+  </script>
+</body>
+
+</html>

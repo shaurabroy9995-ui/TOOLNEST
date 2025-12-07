@@ -1,0 +1,296 @@
+/*  -----------------------------------------------------
+    SUNSET-CYBER  TOOL-PAGES  –  complete  reskin
+    auto-wraps  any  <main class="tool-page">  section
+----------------------------------------------------- */
+.tool-page{
+  background:#0d1117;                     /* deep dark */
+  color:#e6edf3;
+  --neon1:#ff7e5f;   /* sunset orange */
+  --neon2:#feb47b;   /* sunset peach */
+  --neon3:#86a8e7;   /* sunset violet */
+  max-width:920px;
+  margin:2.5rem auto 4rem;
+  padding:0 1rem;
+  display:grid;
+  gap:2rem;
+}
+
+/* 1.  glass  cards  (all  sections)  */
+.tool-page > section,
+.tool-page > .panel,
+.tool-page > .features{
+  background:rgba(255,255,255,.05);
+  backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:20px;
+  padding:2rem 2.2rem;
+  position:relative;                 /* for scan line */
+  transform-style:preserve-3d;
+  transition:transform .4s cubic-bezier(.2,2,.3,1),box-shadow .4s,border-color .4s;
+  backface-visibility:hidden;
+  -webkit-font-smoothing:subpixel-antialiased;
+  animation:slideUp 500ms ease-out both;
+  animation-delay:var(--stagger,0ms);
+}
+.tool-page > section:nth-child(2){--stagger:100ms}
+.tool-page > section:nth-child(3){--stagger:200ms}
+.tool-page > section:nth-child(4){--stagger:300ms}
+.tool-page > section:nth-child(5){--stagger:400ms}
+.tool-page > section:nth-child(6){--stagger:500ms}
+
+.tool-page > section:hover,
+.tool-page > .panel:hover{
+  transform:translateY(-8px) rotateX(3deg) rotateY(-2deg) scale(1.02);
+  border-color:var(--neon2);
+  box-shadow:0 30px 60px -15px rgba(254,180,123,.25);
+}
+
+/* 2.  headings  –  sunset  gradient  */
+.tool-page h1,
+.tool-page .lead{
+  font-family:'Montserrat',sans-serif;
+  font-weight:800;
+  letter-spacing:-.5px;
+  background:linear-gradient(90deg,var(--neon1),var(--neon2));
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  margin-bottom:.8rem;
+}
+.tool-page h1{font-size:2.4rem}
+.tool-page .lead{font-size:1.3rem;display:flex;align-items:center;gap:.5rem}
+
+/* 3.  buttons  –  sunset  tube  +  pulse  */
+.tool-page .btn-cta,
+.tool-page .btn-primary{
+  background:linear-gradient(90deg,var(--neon1),var(--neon2));
+  color:#0d1117;
+  border:none;
+  padding:.85rem 1.8rem;
+  border-radius:30px;
+  font-weight:700;
+  letter-spacing:1px;
+  cursor:pointer;
+  position:relative;
+  overflow:hidden;
+  transition:transform .3s,box-shadow .3s;
+  animation:pulseNeon 2s ease-in-out infinite;
+}
+@keyframes pulseNeon{
+  0%,100%{box-shadow:0 0 15px rgba(255,126,95,.35)}
+  50%{box-shadow:0 0 30px 8px rgba(255,126,95,.55)}
+}
+.tool-page .btn-cta:hover,
+.tool-page .btn-primary:hover{
+  transform:translateY(-4px) scale(1.05);
+  animation:none;
+  box-shadow:0 25px 50px rgba(255,126,95,.45);
+}
+
+/* 4.  inputs / textareas / selects  –  glass  +  neon  focus  */
+.tool-page input[type="text"],
+.tool-page input[type="number"],
+.tool-page input[type="file"],
+.tool-page textarea,
+.tool-page select{
+  width:100%;
+  padding:1rem 1.2rem;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.15);
+  color:#fff;
+  border-radius:12px;
+  font-size:1rem;
+  font-family:'Roboto',sans-serif;
+  transition:border-color .3s,box-shadow .3s,transform .2s;
+}
+.tool-page input:focus,
+.tool-page textarea:focus,
+.tool-page select:focus{
+  outline:none;
+  border-color:var(--neon3);
+  box-shadow:0 0 20px 4px rgba(134,168,231,.35),var(--glow);
+  transform:translateY(-2px);
+}
+
+/* 5.  feature  cards  –  running  neon  edge  */
+.tool-page .features{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;padding:2rem 0;
+}
+.tool-page .feature-card{
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:18px;
+  padding:1.8rem 1.5rem;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+  transition:border-color .3s,transform .3s;
+}
+.tool-page .feature-card:hover{
+  transform:translateY(-6px);
+  border-color:var(--neon3);
+}
+.tool-page .feature-card::after{
+  content:'';
+  position:absolute;
+  top:0; left:-100%;
+  width:100%; height:2px;
+  background:linear-gradient(90deg,transparent,var(--neon3),var(--neon2),transparent);
+  transition:left .6s;
+}
+.tool-page .feature-card:hover::after{left:100%}
+
+/* 6.  pro-tip  panel  –  warm  accent  */
+.tool-page .panel[style*="border-left:5px solid var(--accent-warm)"],
+.tool-page .panel[style*="border-left:5px solid #ff6b5b"]{
+  border-left:5px solid var(--neon1) !important;
+  background:linear-gradient(135deg,rgba(255,126,95,.06),transparent);
+}
+
+/* 7.  ad  placeholder  –  sunset  shimmer  */
+.tool-page .ad-placeholder{
+  background:linear-gradient(135deg,var(--neon1),var(--neon2),var(--neon3));
+  background-size:200% 200%;
+  color:#0d1117;
+  animation:adSunset 4s ease infinite;
+  border:none;
+  box-shadow:0 20px 40px -10px rgba(255,126,95,.3);
+}
+@keyframes adSunset{
+  50%{background-position:100% 50%}
+}
+
+/* 8.  scan  line  on  every  card  */
+.tool-page > section::before,
+.tool-page > .panel::before{
+  content:'';
+  position:absolute;
+  top:0; left:0;
+  width:100%; height:2px;
+  background:linear-gradient(90deg,transparent,var(--neon2),transparent);
+  animation:cardScan 6s linear infinite;
+  z-index:1;
+}
+@keyframes cardScan{
+  from{transform:translateX(-100%)}
+  to{transform:translateX(100%)}
+}
+
+/* 9.  reduce  motion  */
+@media (prefers-reduced-motion:reduce){
+  .tool-page > section::before,.tool-page > .panel::before,.tool-page .btn-cta,.tool-page .btn-primary,.tool-page .feature-card::after{animation:none}
+}
+/* ----------------------------------------
+   ALL-OUT  MOTION  –  home  +  tools  (60 fps)
+---------------------------------------- */
+
+/* 1.  homepage  –  3-layer  parallax  +  chromatic  glitch  */
+.home{
+  overflow:hidden;
+  perspective:3000px;
+}
+.home::before,
+.home::after,
+.home .glitch-layer{
+  content:'';
+  position:fixed;
+  inset:-200px;
+  background:
+    radial-gradient(circle at 25% 75%,rgba(255,126,95,.25) 0%,transparent 60%),
+    radial-gradient(circle at 75% 25%,rgba(134,168,231,.25) 0%,transparent 60%);
+  animation:parallaxHard 15s linear infinite;
+  z-index:-3;
+}
+.home::after{
+  animation-duration:20s;
+  animation-direction:reverse;
+  filter:hue-rotate(180deg);
+}
+.home .glitch-layer{
+  animation-duration:10s;
+  mix-blend-mode:screen;
+  filter:blur(1px) hue-rotate(90deg);
+}
+@keyframes parallaxHard{
+  0%{transform:translateY(0) rotate(0deg) scale(1)}
+  100%{transform:translateY(-100vh) rotate(360deg) scale(1.1)}
+}
+
+/* 2.  hero  text  –  glitch  reveal  */
+.hero h1{
+  position:relative;
+  overflow:hidden;
+  color:#fff;
+  font-family:'Montserrat',sans-serif;
+  font-size:clamp(3rem,10vw,5.5rem);
+  font-weight:900;
+  letter-spacing:-4px;
+  text-transform:uppercase;
+  animation:glitchReveal 1.2s steps(2,end) both;
+}
+@keyframes glitchReveal{
+  0%{clip-path:inset(50% 0 50% 0);transform:translateX(-20px) skewX(-10deg)}
+  25%{clip-path:inset(0 0 0 0);transform:translateX(10px) skewX(5deg)}
+  50%{clip-path:inset(20% 0 20% 0);transform:translateX(-10px) skewX(-5deg)}
+  75%{clip-path:inset(0 0 0 0);transform:translateX(5px) skewX(2deg)}
+  100%{clip-path:inset(0 0 0 0);transform:translateX(0) skewX(0)}
+}
+
+/* 3.  tool  cards  –  hard  3-D  flip  +  neon  glow  */
+.tool-card,
+.feature-card{
+  transform-style:preserve-3d;
+  transition:transform .6s cubic-bezier(.2,2.5,.3,1),box-shadow .6s,border-color .6s;
+  backface-visibility:hidden;
+}
+.tool-card:hover,
+.feature-card:hover{
+  transform:translateY(-25px) rotateX(12deg) rotateY(-8deg) scale(1.1);
+  border-color:var(--neon2);
+  box-shadow:0 60px 120px -30px rgba(254,180,123,.45);
+}
+
+/* 4.  buttons  –  neon  tube  +  click  shock  */
+.tool-page .btn-cta,
+.tool-page .btn-primary,
+.hero .cta-btn{
+  position:relative;
+  transition:transform .3s cubic-bezier(.68,-.55,.265,1.55),box-shadow .3s;
+}
+.tool-page .btn-cta:active,
+.tool-page .btn-primary:active,
+.hero .cta-btn:active{
+  transform:scale(.88);
+  box-shadow:0 0 0 4px rgba(255,126,95,.8),0 0 20px rgba(255,126,95,1);
+}
+
+/* 5.  scan  line  –  rapid  sweep  */
+.tool-page > section::before,
+.tool-page > .panel::before{
+  animation-duration:2.5s;
+  opacity:.8;
+  height:3px;
+  background:linear-gradient(90deg,transparent,#fff,transparent);
+}
+
+/* 6.  cascade  –  big  stagger  +  rotation  */
+.tool-page > section,
+.tool-page > .panel,
+.tool-page > .features{
+  animation:hardDrop .8s cubic-bezier(.68,-.55,.265,1.55) both;
+  animation-delay:var(--stagger,0ms);
+}
+.tool-page > section:nth-child(2){--stagger:150ms}
+.tool-page > section:nth-child(3){--stagger:300ms}
+.tool-page > section:nth-child(4){--stagger:450ms}
+.tool-page > section:nth-child(5){--stagger:600ms}
+.tool-page > section:nth-child(6){--stagger:750ms}
+@keyframes hardDrop{
+  from{opacity:0;transform:translateY(80px) rotateX(-90deg) scale(.8)}
+  to{opacity:1;transform:translateY(0) rotateX(0) scale(1)}
+}
+
+/* 7.  respect  motion  preference  */
+@media (prefers-reduced-motion:reduce){
+  .home::before,.home::after,.home .glitch-layer,.hero h1,.tool-card,.feature-card,.tool-page > section,.tool-page > .panel{animation:none}
+}

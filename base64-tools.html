@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Base64 Tools – ToolNest</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@400;500;700&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <header>
+    <div class="header-inner">
+      <a href="../index.html" class="logo">ToolNest</a>
+      <button class="nav-toggle" onclick="toggleNav()"><span class="hamburger"></span></button>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="text-cleaner.html">Text Cleaner</a>
+        <a href="pdf-tools.html">PDF Tools</a>
+        <a href="image-tools.html">Image Tools</a>
+        <a href="qr-generator.html">QR Generator</a>
+        <button class="donate-btn">Donate</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="tool-page">
+    <section class="tool-page-header">
+      <h1>Base64 Encoder / Decoder</h1>
+      <p class="tool-page-sub">Convert text to and from Base64 encoding instantly</p>
+    </section>
+
+    <section class="panel">
+      <div class="lead">🔤 Input Text</div>
+      <textarea id="base64Input" placeholder="Enter text to encode or Base64 to decode..."></textarea>
+    </section>
+
+    <section class="panel">
+      <div class="lead">⚙️ Choose Action</div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap">
+        <button class="btn-cta" onclick="base64Encode()">Encode to Base64</button>
+        <button class="btn-cta" onclick="base64Decode()">Decode from Base64</button>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="lead">✨ Result</div>
+      <textarea id="base64Output" placeholder="Your converted text will appear here..." readonly></textarea>
+      <div style="display:flex;gap:.8rem;margin-top:1rem">
+        <button class="btn-primary" onclick="copyToClipboard('base64Output')">Copy Result</button>
+        <button class="btn-primary" onclick="clearBase64()">Clear All</button>
+      </div>
+    </section>
+
+    <section class="features">
+      <div class="feature-card">
+        <h3>🎯 Instant Conversion</h3>
+        <p>Encode and decode Base64 strings instantly with high accuracy and reliability.</p>
+      </div>
+      <div class="feature-card">
+        <h3>🔒 No Server Upload</h3>
+        <p>All encoding happens locally in your browser. Your data never leaves your device.</p>
+      </div>
+      <div class="feature-card">
+        <h3>📋 Copy Easily</h3>
+        <p>One-click copy to clipboard for seamless integration into your workflow.</p>
+      </div>
+    </section>
+
+    <section class="panel" style="background:linear-gradient(135deg,var(--accent-soft),rgba(52,179,255,.02))">
+      <div class="lead">📖 How to Use</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem">
+        <div>
+          <h4 style="color:var(--accent);font-weight:700;margin-bottom:.8rem">🔤 Encode Text</h4>
+          <ol style="color:#666;line-height:1.9;margin-left:1.5rem;font-size:.9rem">
+            <li>Enter your text</li>
+            <li>Click "Encode to Base64"</li>
+            <li>Copy result</li>
+          </ol>
+        </div>
+        <div>
+          <h4 style="color:var(--accent);font-weight:700;margin-bottom:.8rem">🔓 Decode Base64</h4>
+          <ol style="color:#666;line-height:1.9;margin-left:1.5rem;font-size:.9rem">
+            <li>Paste Base64 string</li>
+            <li>Click "Decode from Base64"</li>
+            <li>Original text appears</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" style="border-left:5px solid var(--accent-warm)">
+      <div class="lead">💡 Pro Tips</div>
+      <ul style="color:#666;line-height:2;margin-left:1.5rem">
+        <li><strong>API Data:</strong> Encode credentials for API transmission</li>
+        <li><strong>Email Headers:</strong> Base64 is used in MIME data</li>
+        <li><strong>Web Dev:</strong> Embed images as data URIs</li>
+      </ul>
+    </section>
+
+    <div class="ad-placeholder">Advertisement Space</div>
+  </main>
+
+  <script>
+    function base64Encode() {
+      const val = document.getElementById('base64Input').value;
+      document.getElementById('base64Output').value = btoa(val);
+    }
+    function base64Decode() {
+      const val = document.getElementById('base64Input').value;
+      try { document.getElementById('base64Output').value = atob(val) }
+      catch (e) { alert('Invalid Base64 string') }
+    }
+    function clearBase64() {
+      document.getElementById('base64Input').value = '';
+      document.getElementById('base64Output').value = '';
+    }
+    function copyToClipboard(id) {
+      const el = document.getElementById(id);
+      el.select();
+      document.execCommand('copy');
+      /* fallback for newer browsers */
+      navigator.clipboard?.writeText(el.value).then(() => alert('Copied!'));
+    }
+    function toggleNav() {
+      document.querySelector('nav').classList.toggle('open');
+    }
+  </script>
+</body>
+
+</html>

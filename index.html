@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ToolNest – Free Online Tools</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="manifest" href="manifest.json" />
+</head>
+
+<body>
+    <header>
+        <div class="header-inner">
+            <div class="logo">ToolNest</div>
+            <nav>
+                <a href="tools/image-tools.html">Image Tools</a>
+                <a href="tools/qr-generator.html">QR Tools</a>
+                <a href="tools/base64-tools.html">Utilities</a>
+                <a href="#tools">Tools</a>
+                <a href="mailto:hello@toolnest.example" class="donate-btn">Donate</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-inner">
+            <div class="hero-copy">
+                <h1 class="glitch-reveal">ToolNest</h1>
+                <script>document.querySelector('.glitch-reveal').innerHTML =
+                        [...'ToolNest'].map(c => `<span>${c}</span>`).join('');</script>
+                <p class="tagline">Fast, Simple and Completely Free</p>
+                <p class="subline">Your one-stop hub for everyday online tools.</p>
+                <button onclick="scrollToSection('tools')">Explore Tools →</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="about-inner">
+            <h2>About ToolNest</h2>
+            <p>ToolNest provides fast, privacy-friendly browser-based utilities that help you get small tasks done
+                instantly — from merging PDFs to generating QR codes. No accounts, no frictions.</p>
+        </div>
+    </section>
+
+    <section class="tools" id="tools">
+        <div class="tool-card">
+            <h3>Text Cleaner</h3>
+            <p>Remove extra spaces, HTML tags, and emojis from your text.</p>
+            <a class="btn btn-primary" href="tools/text-cleaner.html">Open Text Cleaner</a>
+        </div>
+        <div class="tool-card">
+            <h3>Image Resizer / Converter</h3>
+            <p>Resize images or convert between PNG and JPG formats.</p>
+            <a class="btn btn-primary" href="tools/image-tools.html">Open Image Tools</a>
+        </div>
+        <div class="tool-card">
+            <h3>PDF Merge / Split</h3>
+            <p>Merge or split PDFs instantly in your browser.</p>
+            <a class="btn btn-primary" href="tools/pdf-tools.html">Open PDF Tools</a>
+        </div>
+        <div class="tool-card">
+            <h3>QR Code Generator</h3>
+            <p>Create QR codes for URLs, text, or contacts instantly.</p>
+            <a class="btn btn-primary" href="tools/qr-generator.html">Open QR Tools</a>
+        </div>
+        <div class="tool-card">
+            <h3>Base64 Encoder / Decoder</h3>
+            <p>Convert text to Base64 or decode Base64 back to text.</p>
+            <a class="btn btn-primary" href="tools/base64-tools.html">Open Base64 Tools</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 ToolNest. All rights reserved.</p>
+        <a href="index.html">Home</a> | <a href="#tools">Tools</a> | <a href="mailto:hello@toolnest.example">Contact</a>
+        | <a href="privacy.html">Privacy Policy</a>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js');
+        }
+    </script>
+</body>
+
+</html>

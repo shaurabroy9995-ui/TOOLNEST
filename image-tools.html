@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Image Tools – ToolNest</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@400;500;700&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <header>
+    <div class="header-inner">
+      <a href="../index.html" class="logo">ToolNest</a>
+      <button class="nav-toggle" onclick="toggleNav()"><span class="hamburger"></span></button>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="text-cleaner.html">Text Cleaner</a>
+        <a href="pdf-tools.html">PDF Tools</a>
+        <a href="qr-generator.html">QR Generator</a>
+        <a href="base64-tools.html">Utilities</a>
+        <button class="donate-btn">Donate</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="tool-page">
+    <section class="tool-page-header">
+      <h1>Image Tools</h1>
+      <p class="tool-page-sub">Resize and convert images to different formats easily</p>
+    </section>
+
+    <section class="panel">
+      <div class="lead">📸 Resize Image</div>
+      <p style="color:var(--muted);margin-bottom:1rem">Select an image and enter new dimensions to resize it.</p>
+      <input type="file" id="imageFile" accept="image/*">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1rem 0">
+        <input type="number" id="imgWidth" placeholder="Width (px)">
+        <input type="number" id="imgHeight" placeholder="Height (px)">
+      </div>
+      <button class="btn-cta" onclick="resizeImage()">Resize Image</button>
+    </section>
+
+    <section class="panel">
+      <div class="lead">🎨 Convert Format</div>
+      <p style="color:var(--muted);margin-bottom:1rem">Select an image and choose a format to convert it.</p>
+      <input type="file" id="imageFile2" accept="image/*">
+      <select id="imgFormat" style="margin:1rem 0">
+        <option value="png">PNG</option>
+        <option value="jpeg">JPG/JPEG</option>
+        <option value="webp">WebP</option>
+        <option value="gif">GIF</option>
+      </select>
+      <button class="btn-cta" onclick="convertImage()">Convert Image</button>
+    </section>
+
+    <section class="panel" id="imageResults" style="display:none">
+      <div class="lead">✅ Download Result</div>
+      <div style="display:flex;gap:.8rem;flex-wrap:wrap">
+        <button class="btn-primary" onclick="downloadImage()">Download Image</button>
+        <button class="btn-primary" onclick="clearImages()">Clear All</button>
+      </div>
+    </section>
+
+    <section class="features">
+      <div class="feature-card">
+        <h3>🖼️ Batch Processing</h3>
+        <p>Resize multiple images quickly with precise dimension control and quality preservation.</p>
+      </div>
+      <div class="feature-card">
+        <h3>🔄 Multiple Formats</h3>
+        <p>Convert between PNG, JPG, WebP, and GIF formats with optimized compression.</p>
+      </div>
+      <div class="feature-card">
+        <h3>⚡ Fast & Local</h3>
+        <p>All processing happens in your browser. Your images are never uploaded anywhere.</p>
+      </div>
+    </section>
+
+    <section class="panel" style="background:linear-gradient(135deg,var(--accent-soft),rgba(52,179,255,.02))">
+      <div class="lead">📖 How to Use</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem">
+        <div>
+          <h4 style="color:var(--accent);font-weight:700;margin-bottom:.8rem">📸 Resize Images</h4>
+          <ol style="color:#666;line-height:1.9;margin-left:1.5rem;font-size:.9rem">
+            <li>Select file</li>
+            <li>Enter dimensions</li>
+            <li>Click Resize</li>
+            <li>Download</li>
+          </ol>
+        </div>
+        <div>
+          <h4 style="color:var(--accent);font-weight:700;margin-bottom:.8rem">🎨 Convert Formats</h4>
+          <ol style="color:#666;line-height:1.9;margin-left:1.5rem;font-size:.9rem">
+            <li>Select image</li>
+            <li>Choose format</li>
+            <li>Click Convert</li>
+            <li>Download</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel" style="border-left:5px solid var(--accent-warm)">
+      <div class="lead">💡 Pro Tips</div>
+      <ul style="color:#666;line-height:2;margin-left:1.5rem">
+        <li><strong>Format Choice:</strong> Use PNG for graphics, JPG for photos, WebP for web</li>
+        <li><strong>Quality Balance:</strong> Higher quality = larger file size</li>
+        <li><strong>Batch Upload:</strong> Process multiple images in sequence quickly</li>
+        <li><strong>No Data Loss:</strong> All processing is local, your images stay private</li>
+      </ul>
+    </section>
+
+    <div class="ad-placeholder">Advertisement Space</div>
+  </main>
+
+  <script>
+    let canvasCache = null; // last canvas for download
+    function resizeImage() {
+      const file = document.getElementById('imageFile').files[0];
+      if (!file) { alert('Please select an image'); return }
+      const width = parseInt(document.getElementById('imgWidth').value) || 0;
+      const height = parseInt(document.getElementById('imgHeight').value) || 0;
+      const img = new Image();
+      img.onload = () => {
+        const c = document.createElement('canvas');
+        c.width = width || img.width;
+        c.height = height || img.height;
+        const ctx = c.getContext('2d');
+        ctx.drawImage(img, 0, 0, c.width, c.height);
+        canvasCache = c;
+        document.getElementById('imageResults').style.display = 'block';
+      };
+      img.src = URL.createObjectURL(file);
+    }
+    function convertImage() {
+      const file = document.getElementById('imageFile2').files[0];
+      if (!file) { alert('Please select an image'); return }
+      const format = 'image/' + document.getElementById('imgFormat').value;
+      const img = new Image();
+      img.onload = () => {
+        const c = document.createElement('canvas');
+        c.width = img.width; c.height = img.height;
+        c.getContext('2d').drawImage(img, 0, 0);
+        canvasCache = c;
+        document.getElementById('imageResults').style.display = 'block';
+      };
+      img.src = URL.createObjectURL(file);
+    }
+    function downloadImage() {
+      if (!canvasCache) { alert('Nothing to download'); return }
+      canvasCache.toBlob(blob => {
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'image.' + document.getElementById('imgFormat').value;
+        a.click();
+      });
+    }
+    function clearImages() {
+      document.getElementById('imageFile').value = '';
+      document.getElementById('imageFile2').value = '';
+      document.getElementById('imgWidth').value = '';
+      document.getElementById('imgHeight').value = '';
+      document.getElementById('imageResults').style.display = 'none';
+      canvasCache = null;
+    }
+    function toggleNav() { document.querySelector('nav').classList.toggle('open'); }
+  </script>
+</body>
+
+</html>

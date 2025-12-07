@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Text Cleaner – ToolNest</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@400;500;700&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <header>
+    <div class="header-inner">
+      <a href="../index.html" class="logo">ToolNest</a>
+      <button class="nav-toggle" onclick="toggleNav()"><span class="hamburger"></span></button>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="pdf-tools.html">PDF Tools</a>
+        <a href="image-tools.html">Image Tools</a>
+        <a href="qr-generator.html">QR Generator</a>
+        <a href="base64-tools.html">Utilities</a>
+        <button class="donate-btn">Donate</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="tool-page">
+    <section class="tool-page-header">
+      <h1>Text Cleaner</h1>
+      <p class="tool-page-sub">Remove unwanted characters, fix formatting, and polish your text instantly</p>
+    </section>
+
+    <section class="panel">
+      <div class="lead">📝 Paste Your Text</div>
+      <textarea id="inputText" placeholder="Paste your messy text here..."></textarea>
+    </section>
+
+    <section class="panel">
+      <div class="lead">🧹 Cleaning Options</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.8rem">
+        <label><input type="checkbox" id="removeExtraSpaces" checked> Remove Extra Spaces</label>
+        <label><input type="checkbox" id="removePunctuation"> Remove Punctuation</label>
+        <label><input type="checkbox" id="removeLineBreaks"> Remove Line Breaks</label>
+        <label><input type="checkbox" id="convertToLowercase"> Convert to Lowercase</label>
+        <label><input type="checkbox" id="convertToUppercase"> Convert to Uppercase</label>
+        <label><input type="checkbox" id="trimWhitespace" checked> Trim Whitespace</label>
+      </div>
+      <button class="btn-cta" onclick="runTextCleaner()" style="margin-top:1.2rem">Clean Text</button>
+    </section>
+
+    <section class="panel">
+      <div class="lead">✨ Cleaned Text</div>
+      <textarea id="outputText" placeholder="Your cleaned text will appear here..." readonly></textarea>
+      <div style="display:flex;gap:.8rem;margin-top:1rem">
+        <button class="btn-primary" onclick="copyToClipboard('outputText')">Copy Result</button>
+        <button class="btn-primary" onclick="downloadText()">Download</button>
+        <button class="btn-primary" onclick="clearAll()">Clear All</button>
+      </div>
+    </section>
+
+    <section class="panel" id="stats" style="display:none">
+      <div class="lead">📊 Text Statistics</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin-top:1rem">
+        <div style="padding:1rem;background:var(--accent-soft);border-radius:10px;text-align:center">
+          <div style="font-size:1.8rem;font-weight:700;color:var(--accent)"><span id="charCount">0</span></div>
+          <div style="font-size:.85rem;color:var(--muted)">Characters</div>
+        </div>
+        <div style="padding:1rem;background:var(--accent-soft);border-radius:10px;text-align:center">
+          <div style="font-size:1.8rem;font-weight:700;color:var(--accent)"><span id="wordCount">0</span></div>
+          <div style="font-size:.85rem;color:var(--muted)">Words</div>
+        </div>
+        <div style="padding:1rem;background:var(--accent-soft);border-radius:10px;text-align:center">
+          <div style="font-size:1.8rem;font-weight:700;color:var(--accent)"><span id="lineCount">0</span></div>
+          <div style="font-size:.85rem;color:var(--muted)">Lines</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="features">
+      <div class="feature-card">
+        <h3>🎯 Fast & Accurate</h3>
+        <p>Clean your text instantly with powerful algorithms that preserve meaning while removing clutter.</p>
+      </div>
+      <div class="feature-card">
+        <h3>⚙️ Customizable</h3>
+        <p>Choose exactly which cleaning options to apply with granular control.</p>
+      </div>
+      <div class="feature-card">
+        <h3>🔒 Private</h3>
+        <p>All processing happens in your browser. Your text never leaves your device.</p>
+      </div>
+    </section>
+
+    <section class="panel" style="background:linear-gradient(135deg,var(--accent-soft),rgba(52,179,255,.02))">
+      <div class="lead">📖 How to Use</div>
+      <ol style="color:#555;line-height:1.9;margin-left:1.5rem">
+        <li><strong>Copy & Paste:</strong> Paste your text in the input box</li>
+        <li><strong>Configure:</strong> Check/uncheck the cleaning options</li>
+        <li><strong>Clean:</strong> Click "Clean Text"</li>
+        <li><strong>Copy Result:</strong> One-click copy or download</li>
+      </ol>
+    </section>
+
+    <section class="panel" style="border-left:5px solid var(--accent-warm)">
+      <div class="lead">💡 Pro Tips</div>
+      <ul style="color:#666;line-height:2;margin-left:1.5rem">
+        <li><strong>Combine Options:</strong> Use multiple options together for powerful transformation</li>
+        <li><strong>Statistics:</strong> Real-time counts update as you clean</li>
+        <li><strong>Privacy:</strong> No data upload – 100% local</li>
+      </ul>
+    </section>
+
+    <div class="ad-placeholder">Advertisement Space</div>
+  </main>
+
+  <script>
+    function runTextCleaner() {
+      let t = document.getElementById('inputText').value;
+      if (document.getElementById('removeExtraSpaces').checked) t = t.replace(/\s+/g, ' ');
+      if (document.getElementById('removePunctuation').checked) t = t.replace(/[^\w\s]/g, '');
+      if (document.getElementById('removeLineBreaks').checked) t = t.replace(/\n+/g, ' ');
+      if (document.getElementById('convertToLowercase').checked) t = t.toLowerCase();
+      if (document.getElementById('convertToUppercase').checked) t = t.toUpperCase();
+      if (document.getElementById('trimWhitespace').checked) t = t.trim();
+      document.getElementById('outputText').value = t;
+      document.getElementById('charCount').textContent = t.length;
+      document.getElementById('wordCount').textContent = t.split(/\s+/).filter(w => w).length;
+      document.getElementById('lineCount').textContent = t.split('\n').length;
+      document.getElementById('stats').style.display = 'grid';
+    }
+    function copyToClipboard(id) { const el = document.getElementById(id); el.select(); document.execCommand('copy'); navigator.clipboard?.writeText(el.value).then(() => alert('Copied!')); }
+    function downloadText() {
+      const blob = new Blob([document.getElementById('outputText').value], { type: 'text/plain' });
+      const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'cleaned.txt'; a.click();
+    }
+    function clearAll() {
+      document.getElementById('inputText').value = '';
+      document.getElementById('outputText').value = '';
+      document.getElementById('stats').style.display = 'none';
+    }
+    function toggleNav() { document.querySelector('nav').classList.toggle('open'); }
+  </script>
+</body>
+
+</html>
