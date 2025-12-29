@@ -1,174 +1,338 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Image Tools – ToolNest</title>
-  <link rel="stylesheet" href="../styles.css">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@400;500;700&display=swap"
-    rel="stylesheet">
+<head><title>Image Resize & Converter Tool – ToolNest</title>
+<meta name="description" content="Resize images online, convert PNG, JPG, WebP instantly. Free, fast, and privacy-friendly image tools by ToolNest.">
+<meta name="description" content="Resize and convert images online. Supports multiple formats and keeps quality intact.">
+<meta name="keywords" content="image resizer, image converter, online image tool, resize images, convert images">
+<meta property="og:title" content="Image Resizer & Converter - Toolnest">
+<meta property="og:description" content="Resize and convert images online quickly and safely.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tlnst.netlify.app/tools/image-tools">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Tools - ToolNest</title>
+    <link rel="icon" href="/favicon-32x32.png">
+    <link rel="stylesheet" href="style.css">
+    <script defer src="../JS/main.js"></script>
+    <style>
+        /* Your existing CSS styles */
+        /* Add custom styles for the file input buttons */
+        .custom-file-upload {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+
+        .custom-file-upload:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+        }
+    </style>
 </head>
 
 <body>
-  <header>
-    <div class="header-inner">
-      <a href="../index.html" class="logo">ToolNest</a>
-      <button class="nav-toggle" onclick="toggleNav()"><span class="hamburger"></span></button>
-      <nav>
-        <a href="../index.html">Home</a>
-        <a href="text-cleaner.html">Text Cleaner</a>
-        <a href="pdf-tools.html">PDF Tools</a>
-        <a href="qr-generator.html">QR Generator</a>
-        <a href="base64-tools.html">Utilities</a>
-        <button class="donate-btn">Donate</button>
-      </nav>
+    <header>
+        <div class="header-inner">
+                        <a href="/" class="logo">
+                <img src="ChatGPT_Image_Dec_26__2025__11_27_22_PM-removebg-preview.png" alt="ToolNest Logo">
+            </a>
+            <button class="nav-toggle" onclick="toggleNav()">
+                <span class="hamburger"></span>
+            </button>
+            <nav>
+                <a href="../index.html">Home</a>
+                <a href="text-cleaner.html">Text Cleaner</a>
+                <a href="text-document-tools.html">PDF Tools</a>
+                <a href="qr-generator.html">QR Generator</a>
+                <a href="base64-tools.html">Utilities</a>
+                <button class="donate-btn">Donate</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="tool-page-header">
+            <div>
+                <h1>Image Tools</h1>
+                <p class="tool-page-sub">Resize and convert images to different formats easily</p>
+            </div>
+        </section>
+
+        <!-- Resize Image Section -->
+        <section class="panel">
+            <div class="lead">📸 Resize Image</div>
+            <p style="color: var(--muted); margin-bottom: 1rem;">Select an image and enter new dimensions to resize it.
+            </p>
+            <div class="selected-preview" style="margin-bottom: 0.6rem;">
+                <img id="selectedPreview" alt="Selected image"
+                    style="max-width:100%; display:none; border-radius:4px;" />
+                <div id="selectedPreviewName" style="font-size:0.9rem; color:var(--muted); margin-top:0.4rem;"></div>
+            </div>
+            <div style="position: relative; display: inline-block;">
+                <input title="Select an image file to resize" type="file" id="imageFile" accept="image/*"
+                    style="position: absolute; left: 0; top: 0; opacity: 0; width: 100%; height: 100%; cursor: pointer;" />
+                <button class="custom-file-upload">Choose File</button>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0;">
+                <input title="Output width in pixels. Leave blank to preserve aspect ratio." type="number" id="imgWidth"
+                    placeholder="Width (px)" />
+                <input title="Output height in pixels. Leave blank to preserve aspect ratio." type="number"
+                    id="imgHeight" placeholder="Height (px)" />
+            </div>
+            <button class="btn-cta" onclick="resizeImage()">Resize Image</button>
+        </section>
+
+        <!-- Quality Control -->
+        <section class="panel" style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+            <label for="imgQuality" style="min-width:120px;">⚙️ Quality</label>
+            <input title="Output image quality (0.1 - 1.0). Lower = smaller file" type="range" id="imgQuality" min="0.1"
+                max="1" step="0.1" value="0.9" />
+            <input title="Output image quality (0.1 - 1.0)" type="number" id="imgQualityNumber" min="0.1" max="1"
+                step="0.1" value="0.9" style="width:80px;" />
+            <label style="margin-left: 1rem; display:flex; align-items:center; gap:0.5rem;">
+                <input id="useWorker" type="checkbox" />
+                <span title="Use a web worker with OffscreenCanvas for large images (recommended for >2MB)">Use worker
+                    for large files</span>
+            </label>
+            <div style="font-size:0.85rem; color:var(--muted); margin-top:0.4rem; grid-column:1/-1;">Tip: If your image
+                is large (>2MB) enable the worker for faster processing without blocking the UI.</div>
+        </section>
+
+        <!-- Convert Image Section -->
+        <section class="panel">
+            <div class="lead">🎨 Convert Format</div>
+            <p style="color: var(--muted); margin-bottom: 1rem;">Select an image and choose a format to convert it.</p>
+            <div class="selected-preview" style="margin-bottom: 0.6rem;">
+                <img id="selectedPreview2" alt="Selected image"
+                    style="max-width:100%; display:none; border-radius:4px;" />
+                <div id="selectedPreviewName2" style="font-size:0.9rem; color:var(--muted); margin-top:0.4rem;"></div>
+            </div>
+            <div style="position: relative; display: inline-block;">
+                <input title="Select an image file to convert" type="file" id="imageFile2" accept="image/*"
+                    style="position: absolute; left: 0; top: 0; opacity: 0; width: 100%; height: 100%; cursor: pointer;" />
+                <button class="custom-file-upload">Choose File</button>
+            </div>
+            <select id="imgFormat" style="margin: 1rem 0;">
+                <option value="png">PNG</option>
+                <option value="jpeg">JPG/JPEG</option>
+                <option value="webp">WebP</option>
+                <option value="gif">GIF</option>
+            </select>
+            <div id="formatWarning" style="color:#b35050; display:none; font-size:0.9rem; margin-bottom:0.6rem;">⚠️ GIF
+                export is not supported; it will fall back to PNG.</div>
+            <button class="btn-cta" onclick="convertImage()">Convert Image</button>
+        </section>
+
+        <!-- Download Results -->
+        <section class="panel" id="imageResults" style="display: none;">
+            <div class="lead">✅ Download Result</div>
+            <div style="display: flex; gap: 0.8rem; flex-wrap: wrap;">
+                <button class="btn-primary" onclick="downloadImage()">Download Image</button>
+                <button class="btn-primary" onclick="clearImages()">Clear All</button>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <div class="feature-card">
+                <h3>🖼️ Batch Processing</h3>
+                <p>Resize multiple images quickly with precise dimension control and quality preservation.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🔄 Multiple Formats</h3>
+                <p>Convert between PNG, JPG, WebP, and GIF formats with optimized compression.</p>
+            </div>
+            <div class="feature-card">
+                <h3>⚡ Fast & Local</h3>
+                <p>All processing happens in your browser. Your images are never uploaded anywhere.</p>
+            </div>
+        </section>
+
+        <!-- How to Use Section -->
+        <section class="panel"
+            style="background: linear-gradient(135deg, var(--accent-soft), rgba(52, 179, 255, 0.02));">
+            <div class="lead">📖 How to Use</div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                <div>
+                    <h4 style="color: var(--accent); font-weight: 700; margin-bottom: 0.8rem;">📸 Resize Images</h4>
+                    <ol style="color: #666; line-height: 1.9; margin-left: 1.5rem; font-size: 0.9rem;">
+                        <li>Select an image file</li>
+                        <li>Enter desired width and height</li>
+                        <li>Click "Resize Image"</li>
+                        <li>Download resized image</li>
+                    </ol>
+                </div>
+                <div>
+                    <h4 style="color: var(--accent); font-weight: 700; margin-bottom: 0.8rem;">🎨 Convert Formats</h4>
+                    <ol style="color: #666; line-height: 1.9; margin-left: 1.5rem; font-size: 0.9rem;">
+                        <li>Select your image</li>
+                        <li>Choose target format</li>
+                        <li>Click "Convert Image"</li>
+                        <li>Download converted file</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features List -->
+        <section class="panel">
+            <div class="lead">⚙️ Image Tool Features</div>
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 1rem;">
+                <div>
+                    <h4 style="color: var(--accent); font-weight: 700; margin-bottom: 0.8rem;">📐 Resize Options</h4>
+                    <ul style="list-style: none; color: #666; line-height: 1.8; font-size: 0.9rem;">
+                        <li>✓ Custom dimensions</li>
+                        <li>✓ Aspect ratio lock</li>
+                        <li>✓ Percentage scaling</li>
+                        <li>✓ Max dimensions</li>
+                        <li>✓ Batch processing</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: var(--accent); font-weight: 700; margin-bottom: 0.8rem;">🎨 Supported Formats</h4>
+                    <ul style="list-style: none; color: #666; line-height: 1.8; font-size: 0.9rem;">
+                        <li>✓ PNG - Lossless</li>
+                        <li>✓ JPG/JPEG - Lossy</li>
+                        <li>✓ WebP - Modern</li>
+                        <li>✓ GIF - Animated</li>
+                        <li>✓ BMP - Classic</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: var(--accent); font-weight: 700; margin-bottom: 0.8rem;">✨ Quality Features</h4>
+                    <ul style="list-style: none; color: #666; line-height: 1.8; font-size: 0.9rem;">
+                        <li>✓ Compression control</li>
+                        <li>✓ Quality presets</li>
+                        <li>✓ Metadata handling</li>
+                        <li>✓ EXIF preservation</li>
+                        <li>✓ Color space control</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tips Section -->
+        <section class="panel" style="border-left: 5px solid var(--accent-warm);">
+            <div class="lead">💡 Pro Tips</div>
+            <ul style="color: #666; line-height: 2; margin-left: 1.5rem;">
+                <li><strong>Format Choice:</strong> Use PNG for graphics, JPG for photos, WebP for web</li>
+                <li><strong>Quality Balance:</strong> Higher quality = larger file size, balance for your use case</li>
+                <li><strong>Batch Upload:</strong> Process multiple images in sequence quickly</li>
+                <li><strong>No Data Loss:</strong> All processing is local, your images stay private</li>
+                <li><strong>Web Optimization:</strong> Resize for web to reduce page load times significantly</li>
+            </ul>
+        </section>
+
+
+ <section class="faq-section" id="faq">
+  <h2 class="faq-title">Frequently Asked Questions</h2>
+  <p class="faq-subtitle">Quick answers about all your favorite tools</p>
+
+  <div class="faq-container">    <div class="faq-item">
+      <button class="faq-question">🖼️ Will resizing an image reduce its quality?</button>
+      <div class="faq-answer">
+        <p>Not necessarily. Our resizer uses high-quality rendering to preserve clarity, but extreme downsizing can make images appear softer.</p>
+      </div>
     </div>
-  </header>
 
-  <main class="tool-page">
-    <section class="tool-page-header">
-      <h1>Image Tools</h1>
-      <p class="tool-page-sub">Resize and convert images to different formats easily</p>
-    </section>
-
-    <section class="panel">
-      <div class="lead">📸 Resize Image</div>
-      <p style="color:var(--muted);margin-bottom:1rem">Select an image and enter new dimensions to resize it.</p>
-      <input type="file" id="imageFile" accept="image/*">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1rem 0">
-        <input type="number" id="imgWidth" placeholder="Width (px)">
-        <input type="number" id="imgHeight" placeholder="Height (px)">
+    <div class="faq-item">
+      <button class="faq-question">🔄 What image formats can I convert between?</button>
+      <div class="faq-answer">
+        <p>You can convert between JPG, PNG, WEBP, and BMP. The converter automatically optimizes quality and file size for each format.</p>
       </div>
-      <button class="btn-cta" onclick="resizeImage()">Resize Image</button>
-    </section>
+    </div>
+</section>
+        <div class="ad-placeholder">        <script async="async" data-cfasync="false"
+                src="https://pl28329885.effectivegatecpm.com/4e970230fcd96c508ce5e0c902bc05a0/invoke.js"></script></div>
+    </main>
 
-    <section class="panel">
-      <div class="lead">🎨 Convert Format</div>
-      <p style="color:var(--muted);margin-bottom:1rem">Select an image and choose a format to convert it.</p>
-      <input type="file" id="imageFile2" accept="image/*">
-      <select id="imgFormat" style="margin:1rem 0">
-        <option value="png">PNG</option>
-        <option value="jpeg">JPG/JPEG</option>
-        <option value="webp">WebP</option>
-        <option value="gif">GIF</option>
-      </select>
-      <button class="btn-cta" onclick="convertImage()">Convert Image</button>
-    </section>
+    <footer>
+        <p>&copy; 2025 ToolNest. All rights reserved.</p>
+        <p>
+            <a href="../index.html">Home</a> |
+            <a href="text-cleaner.html">Text Cleaner</a> |
+            <a href="text-document-tools.html">PDF Tools</a> |
+            <a href="#">Privacy Policy</a>
+        </p>
+        <p>Follow us:
+            <a href="#">Twitter</a> |
+            <a href="#">Instagram</a> |
+            <a href="#">LinkedIn</a>
+        </p>
+    </footer>
 
-    <section class="panel" id="imageResults" style="display:none">
-      <div class="lead">✅ Download Result</div>
-      <div style="display:flex;gap:.8rem;flex-wrap:wrap">
-        <button class="btn-primary" onclick="downloadImage()">Download Image</button>
-        <button class="btn-primary" onclick="clearImages()">Clear All</button>
-      </div>
-    </section>
+    <script src="../JS/TOOLS-JS/image-tools.js" defer></script>
+    <script>
+        function toggleNav() {
+            const nav = document.querySelector('nav');
+            nav.classList.toggle('open');
+        }
 
-    <section class="features">
-      <div class="feature-card">
-        <h3>🖼️ Batch Processing</h3>
-        <p>Resize multiple images quickly with precise dimension control and quality preservation.</p>
-      </div>
-      <div class="feature-card">
-        <h3>🔄 Multiple Formats</h3>
-        <p>Convert between PNG, JPG, WebP, and GIF formats with optimized compression.</p>
-      </div>
-      <div class="feature-card">
-        <h3>⚡ Fast & Local</h3>
-        <p>All processing happens in your browser. Your images are never uploaded anywhere.</p>
-      </div>
-    </section>
+            fileInputs.forEach(fileInput => {
+                const wrapper = document.createElement('div');
+                wrapper.style.position = 'relative';
+                wrapper.style.overflow = 'hidden';
+                wrapper.style.display = 'inline-block';
 
-    <section class="panel" style="background:linear-gradient(135deg,var(--accent-soft),rgba(52,179,255,.02))">
-      <div class="lead">📖 How to Use</div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem">
-        <div>
-          <h4 style="color:var(--accent);font-weight:700;margin-bottom:.8rem">📸 Resize Images</h4>
-          <ol style="color:#666;line-height:1.9;margin-left:1.5rem;font-size:.9rem">
-            <li>Select file</li>
-            <li>Enter dimensions</li>
-            <li>Click Resize</li>
-            <li>Download</li>
-          </ol>
-        </div>
-        <div>
-          <h4 style="color:var(--accent);font-weight:700;margin-bottom:.8rem">🎨 Convert Formats</h4>
-          <ol style="color:#666;line-height:1.9;margin-left:1.5rem;font-size:.9rem">
-            <li>Select image</li>
-            <li>Choose format</li>
-            <li>Click Convert</li>
-            <li>Download</li>
-          </ol>
-        </div>
-      </div>
-    </section>
+                const button = document.createElement('button');
+                button.className = 'tool-btn tool-btn-primary';
+                button.textContent = 'Choose File';
+                button.style.cursor = 'pointer';
 
-    <section class="panel" style="border-left:5px solid var(--accent-warm)">
-      <div class="lead">💡 Pro Tips</div>
-      <ul style="color:#666;line-height:2;margin-left:1.5rem">
-        <li><strong>Format Choice:</strong> Use PNG for graphics, JPG for photos, WebP for web</li>
-        <li><strong>Quality Balance:</strong> Higher quality = larger file size</li>
-        <li><strong>Batch Upload:</strong> Process multiple images in sequence quickly</li>
-        <li><strong>No Data Loss:</strong> All processing is local, your images stay private</li>
-      </ul>
-    </section>
+                wrapper.appendChild(button);
+                wrapper.appendChild(fileInput);
+                fileInput.style.opacity = '0';
+                fileInput.style.position = 'absolute';
+                fileInput.style.top = '0';
+                fileInput.style.left = '0';
+                fileInput.style.width = '100%';
+                fileInput.style.height = '100%';
 
-    <div class="ad-placeholder">Advertisement Space</div>
-  </main>
+                fileInput.parentNode.replaceChild(wrapper, fileInput);
+            });
+        ;
+    </script>
+        <script>
+        function toggleNav() {
+            const nav = document.querySelector('nav');
+            nav.classList.toggle('open');
+        }
+    </script>
 
-  <script>
-    let canvasCache = null; // last canvas for download
-    function resizeImage() {
-      const file = document.getElementById('imageFile').files[0];
-      if (!file) { alert('Please select an image'); return }
-      const width = parseInt(document.getElementById('imgWidth').value) || 0;
-      const height = parseInt(document.getElementById('imgHeight').value) || 0;
-      const img = new Image();
-      img.onload = () => {
-        const c = document.createElement('canvas');
-        c.width = width || img.width;
-        c.height = height || img.height;
-        const ctx = c.getContext('2d');
-        ctx.drawImage(img, 0, 0, c.width, c.height);
-        canvasCache = c;
-        document.getElementById('imageResults').style.display = 'block';
-      };
-      img.src = URL.createObjectURL(file);
-    }
-    function convertImage() {
-      const file = document.getElementById('imageFile2').files[0];
-      if (!file) { alert('Please select an image'); return }
-      const format = 'image/' + document.getElementById('imgFormat').value;
-      const img = new Image();
-      img.onload = () => {
-        const c = document.createElement('canvas');
-        c.width = img.width; c.height = img.height;
-        c.getContext('2d').drawImage(img, 0, 0);
-        canvasCache = c;
-        document.getElementById('imageResults').style.display = 'block';
-      };
-      img.src = URL.createObjectURL(file);
-    }
-    function downloadImage() {
-      if (!canvasCache) { alert('Nothing to download'); return }
-      canvasCache.toBlob(blob => {
-        const a = document.createElement('a');
-        a.href = URL.createObjectURL(blob);
-        a.download = 'image.' + document.getElementById('imgFormat').value;
-        a.click();
-      });
-    }
-    function clearImages() {
-      document.getElementById('imageFile').value = '';
-      document.getElementById('imageFile2').value = '';
-      document.getElementById('imgWidth').value = '';
-      document.getElementById('imgHeight').value = '';
-      document.getElementById('imageResults').style.display = 'none';
-      canvasCache = null;
-    }
-    function toggleNav() { document.querySelector('nav').classList.toggle('open'); }
-  </script>
+
+<script>
+document.querySelectorAll('.faq-question').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.parentElement;
+    item.classList.toggle('active');
+  });
+});
+</script>
+
+
+ <script src="https://www.effectivegatecpm.com/y2zxerbvp?key=17eb9c63da70660abcc1568a3ddec06d"></script>
+    <script src="https://pl28329842.effectivegatecpm.com/42/2d/58/422d58d94e73c60767143f538a8d1c3b.js"></script>
+    <script>
+        atOptions = {
+            'key': '614219578c19854d116d8e4625d89995',
+            'format': 'iframe',
+            'height': 50,
+            'width': 320,
+            'params': {}
+        };
+    </script>
+    <script src="https://www.highperformanceformat.com/614219578c19854d116d8e4625d89995/invoke.js"></script>
+<script src="https://pl28329842.effectivegatecpm.com/42/2d/58/422d58d94e73c60767143f538a8d1c3b.js"></script>
 </body>
 
 </html>

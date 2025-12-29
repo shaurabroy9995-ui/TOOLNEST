@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <url>
+    <loc>https://tlnst.netlify.app/</loc>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://tlnst.netlify.app/tools/image-tools.html</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://tlnst.netlify.app/tools/text-cleaner.html</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://tlnst.netlify.app/tools/pdf-tools.html</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://tlnst.netlify.app/tools/qr-generator.html</loc>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://tlnst.netlify.app/tools/base64-tools.html</loc>
+    <priority>0.8</priority>
+  </url>
+
+</urlset>

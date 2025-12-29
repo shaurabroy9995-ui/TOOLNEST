@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tlnst.netlify.app/sitemap.xml

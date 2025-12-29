@@ -2,133 +2,243 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Base64 Tools – ToolNest</title>
-  <link rel="stylesheet" href="../styles.css">
-  <link
-    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@400;500;700&display=swap"
-    rel="stylesheet">
+    <title>base64-tools – ToolNest</title>
+    <meta name="description"
+        content="Resize images online, convert PNG, JPG, WebP instantly. Free, fast, and privacy-friendly image tools by ToolNest.">
+    <meta name="description"
+        content="Encode or decode Base64 strings online instantly. Simple tool for developers and coders.">
+    <meta name="keywords" content="base64 encoder, base64 decoder, online base64 tool, encode decode text">
+    <meta property="og:title" content="Base64 Encode & Decode - Toolnest">
+    <meta property="og:description" content="Encode or decode Base64 strings online easily.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tlnst.netlify.app/tools/base64-tools">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base64 Tools - ToolNest</title>
+    <link rel="icon" href="/favicon-32x32.png">
+    <script defer src="../JS/main.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <header>
-    <div class="header-inner">
-      <a href="../index.html" class="logo">ToolNest</a>
-      <button class="nav-toggle" onclick="toggleNav()"><span class="hamburger"></span></button>
-      <nav>
-        <a href="../index.html">Home</a>
-        <a href="text-cleaner.html">Text Cleaner</a>
-        <a href="pdf-tools.html">PDF Tools</a>
-        <a href="image-tools.html">Image Tools</a>
-        <a href="qr-generator.html">QR Generator</a>
-        <button class="donate-btn">Donate</button>
-      </nav>
+    <header>
+        <div class="header-inner">
+            <a href="/" class="logo">
+                <img src="ChatGPT_Image_Dec_26__2025__11_27_22_PM-removebg-preview.png" alt="ToolNest Logo">
+            </a>
+            <button class="nav-toggle" onclick="toggleNav()">
+                <span class="hamburger"></span>
+            </button>
+            <nav>
+                <a href="../index.html">Home</a>
+                <a href="text-cleaner.html">Text Cleaner</a>
+                <a href="text-document-tools.html">PDF Tools</a>
+                <a href="image-tools.html">Image Tools</a>
+                <a href="qr-generator.html">QR Generator</a>
+                <button class="donate-btn">Donate</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="tool-page-header">
+            <div>
+                <h1>Base64 Encoder / Decoder</h1>
+                <p class="tool-page-sub">Convert text to and from Base64 encoding instantly</p>
+            </div>
+        </section>
+
+        <!-- Input Section -->
+        <section class="panel">
+            <div class="lead">🔤 Input Text</div>
+            <textarea id="base64Input" placeholder="Enter text to encode or Base64 to decode..."></textarea>
+        </section>
+
+        <!-- Action Buttons -->
+        <section class="panel">
+            <div class="lead">⚙️ Choose Action</div>
+            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <button id="encodeBtn" class="btn-cta">Encode to Base64</button>
+                <button id="decodeBtn" class="btn-cta">Decode from Base64</button>
+            </div>
+        </section>
+
+        <!-- Output Section -->
+        <section class="panel">
+            <div class="lead">✨ Result</div>
+            <textarea id="base64Output" placeholder="Your converted text will appear here..." readonly></textarea>
+            <div style="display: flex; gap: 0.8rem; margin-top: 1rem;">
+                <button id="copyBase64Btn" class="btn-primary">Copy Result</button>
+                <button id="clearBase64Btn" class="btn-primary">Clear All</button>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <div class="feature-card">
+                <h3>🎯 Instant Conversion</h3>
+                <p>Encode and decode Base64 strings instantly with high accuracy and reliability.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🔒 No Server Upload</h3>
+                <p>All encoding happens locally in your browser. Your data never leaves your device.</p>
+            </div>
+            <div class="feature-card">
+                <h3>📋 Copy Easily</h3>
+                <p>One-click copy to clipboard for seamless integration into your workflow.</p>
+            </div>
+        </section>
+
+        <!-- How to Use Section -->
+        <section class="panel"
+            style="background: linear-gradient(135deg, var(--accent-soft), rgba(52, 179, 255, 0.02));">
+            <div class="lead">📖 How to Use</div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                <div>
+                    <h4 style="color: var(--accent); font-weight: 700; margin-bottom: 0.8rem;">🔤 Encode Text</h4>
+                    <ol style="color: #666; line-height: 1.9; margin-left: 1.5rem; font-size: 0.9rem;">
+                        <li>Enter your text above</li>
+                        <li>Click "Encode to Base64"</li>
+                        <li>Result appears instantly</li>
+                        <li>Copy with one click</li>
+                    </ol>
+                </div>
+                <div>
+                    <h4 style="color: var(--accent); font-weight: 700; margin-bottom: 0.8rem;">🔓 Decode Base64</h4>
+                    <ol style="color: #666; line-height: 1.9; margin-left: 1.5rem; font-size: 0.9rem;">
+                        <li>Paste Base64 string</li>
+                        <li>Click "Decode from Base64"</li>
+                        <li>Original text appears</li>
+                        <li>Copy to clipboard</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features List -->
+        <section class="panel">
+            <div class="lead">⚙️ Base64 Tool Features</div>
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 1rem;">
+                <div>
+                    <h4 style="color: var(--accent); font-weight: 700; margin-bottom: 0.8rem;">🔄 Encoding/Decoding</h4>
+                    <ul style="list-style: none; color: #666; line-height: 1.8; font-size: 0.9rem;">
+                        <li>✓ UTF-8 encoding support</li>
+                        <li>✓ Instant conversion</li>
+                        <li>✓ Batch processing</li>
+                        <li>✓ Error detection</li>
+                        <li>✓ Format validation</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: var(--accent); font-weight: 700; margin-bottom: 0.8rem;">💾 Data Support</h4>
+                    <ul style="list-style: none; color: #666; line-height: 1.8; font-size: 0.9rem;">
+                        <li>✓ Plain text</li>
+                        <li>✓ Special characters</li>
+                        <li>✓ Unicode support</li>
+                        <li>✓ Emoji support</li>
+                        <li>✓ Multi-line text</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: var(--accent); font-weight: 700; margin-bottom: 0.8rem;">✨ Advanced Features</h4>
+                    <ul style="list-style: none; color: #666; line-height: 1.8; font-size: 0.9rem;">
+                        <li>✓ One-click copy</li>
+                        <li>✓ Auto-detection</li>
+                        <li>✓ Character count</li>
+                        <li>✓ Clear history</li>
+                        <li>✓ Undo/Redo</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tips Section -->
+        <section class="panel" style="border-left: 5px solid var(--accent-warm);">
+            <div class="lead">💡 Pro Tips & Use Cases</div>
+            <ul style="color: #666; line-height: 2; margin-left: 1.5rem;">
+                <li><strong>API Data:</strong> Encode credentials or sensitive data for API transmission</li>
+                <li><strong>Email Headers:</strong> Base64 is commonly used in email headers and MIME data</li>
+                <li><strong>Web Development:</strong> Embed images in HTML/CSS as data URIs</li>
+                <li><strong>Security:</strong> Quick obfuscation for configuration files</li>
+                <li><strong>Data Transfer:</strong> Safely encode binary data for transmission over text protocols</li>
+            </ul>
+        </section>
+
+        <section class="faq-section" id="faq">
+  <h2 class="faq-title">Frequently Asked Questions</h2>
+  <p class="faq-subtitle">Quick answers about all your favorite tools</p>
+
+  <div class="faq-container">
+     <div class="faq-item">
+      <button class="faq-question">🔢 What is Base64 encoding?</button>
+      <div class="faq-answer">
+        <p>Base64 encoding converts binary data (like images or files) into text. It’s commonly used to embed images in HTML/CSS or safely transmit data in URLs and APIs.</p>
+      </div>
     </div>
-  </header>
 
-  <main class="tool-page">
-    <section class="tool-page-header">
-      <h1>Base64 Encoder / Decoder</h1>
-      <p class="tool-page-sub">Convert text to and from Base64 encoding instantly</p>
-    </section>
-
-    <section class="panel">
-      <div class="lead">🔤 Input Text</div>
-      <textarea id="base64Input" placeholder="Enter text to encode or Base64 to decode..."></textarea>
-    </section>
-
-    <section class="panel">
-      <div class="lead">⚙️ Choose Action</div>
-      <div style="display:flex;gap:1rem;flex-wrap:wrap">
-        <button class="btn-cta" onclick="base64Encode()">Encode to Base64</button>
-        <button class="btn-cta" onclick="base64Decode()">Decode from Base64</button>
+    <div class="faq-item">
+      <button class="faq-question">🧩 Can I decode Base64 back to a file or image?</button>
+      <div class="faq-answer">
+        <p>Yes! Just paste your Base64 string into the decoder, and it’ll convert it back into the original file or image format.</p>
       </div>
-    </section>
+    </div>
+       
+    </div>
+</section>
 
-    <section class="panel">
-      <div class="lead">✨ Result</div>
-      <textarea id="base64Output" placeholder="Your converted text will appear here..." readonly></textarea>
-      <div style="display:flex;gap:.8rem;margin-top:1rem">
-        <button class="btn-primary" onclick="copyToClipboard('base64Output')">Copy Result</button>
-        <button class="btn-primary" onclick="clearBase64()">Clear All</button>
-      </div>
-    </section>
-
-    <section class="features">
-      <div class="feature-card">
-        <h3>🎯 Instant Conversion</h3>
-        <p>Encode and decode Base64 strings instantly with high accuracy and reliability.</p>
-      </div>
-      <div class="feature-card">
-        <h3>🔒 No Server Upload</h3>
-        <p>All encoding happens locally in your browser. Your data never leaves your device.</p>
-      </div>
-      <div class="feature-card">
-        <h3>📋 Copy Easily</h3>
-        <p>One-click copy to clipboard for seamless integration into your workflow.</p>
-      </div>
-    </section>
-
-    <section class="panel" style="background:linear-gradient(135deg,var(--accent-soft),rgba(52,179,255,.02))">
-      <div class="lead">📖 How to Use</div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem">
-        <div>
-          <h4 style="color:var(--accent);font-weight:700;margin-bottom:.8rem">🔤 Encode Text</h4>
-          <ol style="color:#666;line-height:1.9;margin-left:1.5rem;font-size:.9rem">
-            <li>Enter your text</li>
-            <li>Click "Encode to Base64"</li>
-            <li>Copy result</li>
-          </ol>
+        <div class="ad-placeholder">
+            <script async="async" data-cfasync="false"
+                src="https://pl28329885.effectivegatecpm.com/4e970230fcd96c508ce5e0c902bc05a0/invoke.js"></script>
         </div>
-        <div>
-          <h4 style="color:var(--accent);font-weight:700;margin-bottom:.8rem">🔓 Decode Base64</h4>
-          <ol style="color:#666;line-height:1.9;margin-left:1.5rem;font-size:.9rem">
-            <li>Paste Base64 string</li>
-            <li>Click "Decode from Base64"</li>
-            <li>Original text appears</li>
-          </ol>
-        </div>
-      </div>
-    </section>
+    </main>
 
-    <section class="panel" style="border-left:5px solid var(--accent-warm)">
-      <div class="lead">💡 Pro Tips</div>
-      <ul style="color:#666;line-height:2;margin-left:1.5rem">
-        <li><strong>API Data:</strong> Encode credentials for API transmission</li>
-        <li><strong>Email Headers:</strong> Base64 is used in MIME data</li>
-        <li><strong>Web Dev:</strong> Embed images as data URIs</li>
-      </ul>
-    </section>
+    <footer>
+        <p>&copy; 2025 ToolNest. All rights reserved.</p>
+        <p>
+            <a href="../index.html">Home</a> |
+            <a href="text-cleaner.html">Text Cleaner</a> |
+            <a href="text-document-tools.html">PDF Tools</a> |
+            <a href="#">Privacy Policy</a>
+        </p>
+        <p>Follow us:
+            <a href="#">Twitter</a> |
+            <a href="#">Instagram</a> |
+            <a href="#">LinkedIn</a>
+        </p>
+    </footer>
 
-    <div class="ad-placeholder">Advertisement Space</div>
-  </main>
+    <script src="../JS/TOOLS-JS/base64-tools.js" defer></script>
+    <script>
+        function toggleNav() {
+            const nav = document.querySelector('nav');
+            nav.classList.toggle('open');
+        }
+    </script>
 
-  <script>
-    function base64Encode() {
-      const val = document.getElementById('base64Input').value;
-      document.getElementById('base64Output').value = btoa(val);
-    }
-    function base64Decode() {
-      const val = document.getElementById('base64Input').value;
-      try { document.getElementById('base64Output').value = atob(val) }
-      catch (e) { alert('Invalid Base64 string') }
-    }
-    function clearBase64() {
-      document.getElementById('base64Input').value = '';
-      document.getElementById('base64Output').value = '';
-    }
-    function copyToClipboard(id) {
-      const el = document.getElementById(id);
-      el.select();
-      document.execCommand('copy');
-      /* fallback for newer browsers */
-      navigator.clipboard?.writeText(el.value).then(() => alert('Copied!'));
-    }
-    function toggleNav() {
-      document.querySelector('nav').classList.toggle('open');
-    }
-  </script>
+    <script>
+document.querySelectorAll('.faq-question').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.parentElement;
+    item.classList.toggle('active');
+  });
+});
+</script>
+
+
+    <script src="https://www.effectivegatecpm.com/y2zxerbvp?key=17eb9c63da70660abcc1568a3ddec06d"></script>
+    <script src="https://pl28329842.effectivegatecpm.com/42/2d/58/422d58d94e73c60767143f538a8d1c3b.js"></script>
+    <script>
+        atOptions = {
+            'key': '614219578c19854d116d8e4625d89995',
+            'format': 'iframe',
+            'height': 50,
+            'width': 320,
+            'params': {}
+        };
+    </script>
+    <script src="https://www.highperformanceformat.com/614219578c19854d116d8e4625d89995/invoke.js"></script>
+    <script src="https://pl28329842.effectivegatecpm.com/42/2d/58/422d58d94e73c60767143f538a8d1c3b.js"></script>
 </body>
 
 </html>
