@@ -59,3 +59,18 @@ document.addEventListener('keydown', e => {
   if ((e.ctrlKey || e.metaKey) && e.key === 'z') { e.preventDefault(); undo(); }
 });
 document.getElementById('inputText')?.addEventListener('input', e => pushUndo(e.target.value));
+
+
+function toggleNav() {
+  const nav = document.querySelector('nav');
+  nav.classList.toggle('open');
+  document.body.classList.toggle('nav-open');
+}
+
+
+function toggleNav() {
+    const nav = document.querySelector('nav');
+    const navToggle = document.querySelector('.nav-toggle');
+    nav.classList.toggle('open');
+    navToggle.classList.toggle('active');
+}

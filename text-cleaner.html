@@ -2,27 +2,22 @@
 <html lang="en">
 
 <head>
-    <title>text-cleaner – ToolNest</title>
-<meta name="description" content="Resize images online, convert PNG, JPG, WebP instantly. Free, fast, and privacy-friendly image tools by ToolNest.">
-<meta name="description" content="Clean and format your text online. Remove unwanted characters, spaces, and line breaks easily.">
-<meta name="keywords" content="text cleaner, text formatter, remove line breaks, online text tool">
-<meta property="og:title" content="Text Cleaner - Toolnest">
-<meta property="og:description" content="Clean and format your text online quickly and easily.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://tlnst.netlify.app/tools/text-cleaner">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Text Cleaner - ToolNest</title>
-    <link rel="icon" href="/favicon-32x32.png">
-<link rel="stylesheet" href="style.css">    <script defer src="../JS/main.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="../JS/main.js"></script>
+
+    <style>
+
+    </style>
+
 </head>
 
 <body>
     <header>
         <div class="header-inner">
-                        <a href="/" class="logo">
-                <img src="ChatGPT_Image_Dec_26__2025__11_27_22_PM-removebg-preview.png" alt="ToolNest Logo">
-            </a>
+            <a href="../index.html" class="logo">ToolNest</a>
             <button class="nav-toggle" onclick="toggleNav()">
                 <span class="hamburger"></span>
             </button>
@@ -54,23 +49,23 @@
         <!-- Clean Text Options -->
         <section class="panel">
             <div class="lead">🧹 Cleaning Options</div>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 0.8rem;">
-                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+            <div>
+                <label>
                     <input type="checkbox" id="removeExtraSpaces" checked> Remove Extra Spaces
                 </label>
-                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                <label>
                     <input type="checkbox" id="removePunctuation"> Remove Punctuation
                 </label>
-                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                <label>
                     <input type="checkbox" id="removeLineBreaks"> Remove Line Breaks
                 </label>
-                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                <label>
                     <input type="checkbox" id="convertToLowercase"> Convert to Lowercase
                 </label>
-                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                <label>
                     <input type="checkbox" id="convertToUppercase"> Convert to Uppercase
                 </label>
-                <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                <label>
                     <input type="checkbox" id="trimWhitespace" checked> Trim Whitespace
                 </label>
             </div>
@@ -90,24 +85,24 @@
         <!-- Statistics -->
         <section class="panel" id="stats" style="display: none;">
             <div class="lead">📊 Text Statistics</div>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-top: 1rem;">
-                <div style="padding: 1rem; background: var(--accent-soft); border-radius: 10px; text-align: center;">
-                    <div style="font-size: 1.8rem; font-weight: 700; color: var(--accent);">
+            <div>
+                <div>
+                    <div>
                         <span id="charCount">0</span>
                     </div>
-                    <div style="font-size: 0.85rem; color: var(--muted); margin-top: 0.3rem;">Characters</div>
+                    <div>Characters</div>
                 </div>
-                <div style="padding: 1rem; background: var(--accent-soft); border-radius: 10px; text-align: center;">
-                    <div style="font-size: 1.8rem; font-weight: 700; color: var(--accent);">
+                <div>
+                    <div>
                         <span id="wordCount">0</span>
                     </div>
-                    <div style="font-size: 0.85rem; color: var(--muted); margin-top: 0.3rem;">Words</div>
+                    <div>Words</div>
                 </div>
-                <div style="padding: 1rem; background: var(--accent-soft); border-radius: 10px; text-align: center;">
-                    <div style="font-size: 1.8rem; font-weight: 700; color: var(--accent);">
+                <div>
+                    <div>
                         <span id="lineCount">0</span>
                     </div>
-                    <div style="font-size: 0.85rem; color: var(--muted); margin-top: 0.3rem;">Lines</div>
+                    <div>Lines</div>
                 </div>
             </div>
         </section>
@@ -129,9 +124,10 @@
         </section>
 
         <!-- How to Use Section -->
-        <section class="panel" style="background: linear-gradient(135deg, var(--accent-soft), rgba(52, 179, 255, 0.02));">
+        <section class="panel"
+            style="background: linear-gradient(135deg, var(--accent-soft), rgba(52, 179, 255, 0.02));">
             <div class="lead">📖 How to Use</div>
-            <ol style="color: #555; line-height: 1.9; margin-left: 1.5rem;">
+            <ol>
                 <li><strong>Copy & Paste:</strong> Simply paste your text in the input box above</li>
                 <li><strong>Configure:</strong> Check/uncheck the cleaning options you want to apply</li>
                 <li><strong>Clean:</strong> Click the "Clean Text" button to process your text</li>
@@ -143,19 +139,19 @@
         <!-- Available Options Section -->
         <section class="panel">
             <div class="lead">⚙️ Available Cleaning Options</div>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 1rem;">
+            <div>
                 <div>
-                    <h4 style="color: var(--accent); font-weight: 700; margin-bottom: 0.8rem;">✨ Whitespace Management</h4>
-                    <ul style="list-style: none; color: #666; line-height: 1.8; font-size: 0.9rem;">
-                        <li>✓ Remove extra spaces</li>
-                        <li>✓ Trim leading/trailing spaces</li>
-                        <li>✓ Remove blank lines</li>
-                        <li>✓ Replace tabs with spaces</li>
-                    </ul>
+                    <h4">✨ Whitespace Management</h4>
+                        <ul>
+                            <li>✓ Remove extra spaces</li>
+                            <li>✓ Trim leading/trailing spaces</li>
+                            <li>✓ Remove blank lines</li>
+                            <li>✓ Replace tabs with spaces</li>
+                        </ul>
                 </div>
                 <div>
-                    <h4 style="color: var(--accent); font-weight: 700; margin-bottom: 0.8rem;">🔤 Character Control</h4>
-                    <ul style="list-style: none; color: #666; line-height: 1.8; font-size: 0.9rem;">
+                    <h4>🔤 Character Control</h4>
+                    <ul>
                         <li>✓ Remove punctuation</li>
                         <li>✓ Strip emojis</li>
                         <li>✓ Remove accents</li>
@@ -163,8 +159,8 @@
                     </ul>
                 </div>
                 <div>
-                    <h4 style="color: var(--accent); font-weight: 700; margin-bottom: 0.8rem;">🔤 Case Conversion</h4>
-                    <ul style="list-style: none; color: #666; line-height: 1.8; font-size: 0.9rem;">
+                    <h4>🔤 Case Conversion</h4>
+                    <ul>
                         <li>✓ Convert to Lowercase</li>
                         <li>✓ Convert to Uppercase</li>
                         <li>✓ Capitalize words</li>
@@ -172,8 +168,8 @@
                     </ul>
                 </div>
                 <div>
-                    <h4 style="color: var(--accent); font-weight: 700; margin-bottom: 0.8rem;">🧹 Advanced Cleaning</h4>
-                    <ul style="list-style: none; color: #666; line-height: 1.8; font-size: 0.9rem;">
+                    <h4>🧹 Advanced Cleaning</h4>
+                    <ul>
                         <li>✓ Remove line breaks</li>
                         <li>✓ Normalize spacing</li>
                         <li>✓ Fix punctuation spacing</li>
@@ -181,8 +177,8 @@
                     </ul>
                 </div>
                 <div>
-                    <h4 style="color: var(--accent); font-weight: 700; margin-bottom: 0.8rem;">🌐 Web Content</h4>
-                    <ul style="list-style: none; color: #666; line-height: 1.8; font-size: 0.9rem;">
+                    <h4>🌐 Web Content</h4>
+                    <ul>
                         <li>✓ Remove HTML tags</li>
                         <li>✓ Decode HTML entities</li>
                         <li>✓ Remove URLs</li>
@@ -190,8 +186,8 @@
                     </ul>
                 </div>
                 <div>
-                    <h4 style="color: var(--accent); font-weight: 700; margin-bottom: 0.8rem;">📊 Statistics</h4>
-                    <ul style="list-style: none; color: #666; line-height: 1.8; font-size: 0.9rem;">
+                    <h4>📊 Statistics</h4>
+                    <ul>
                         <li>✓ Character count</li>
                         <li>✓ Word count</li>
                         <li>✓ Line count</li>
@@ -204,42 +200,27 @@
         <!-- Tips Section -->
         <section class="panel" style="border-left: 5px solid var(--accent-warm);">
             <div class="lead">💡 Pro Tips</div>
-            <ul style="color: #666; line-height: 2; margin-left: 1.5rem;">
-                <li><strong>Combine Options:</strong> Use multiple options together for powerful text transformation</li>
+            <ul>
+                <li><strong>Combine Options:</strong> Use multiple options together for powerful text transformation
+                </li>
                 <li><strong>Preview Changes:</strong> Statistics update in real-time as you select options</li>
                 <li><strong>Start Fresh:</strong> Clear all fields instantly with the Clear All button</li>
                 <li><strong>No Data Upload:</strong> Everything happens locally in your browser - complete privacy</li>
                 <li><strong>One-Click Copy:</strong> Copy your cleaned text instantly to clipboard</li>
             </ul>
         </section>
-<section class="faq-section" id="faq">
-  <h2 class="faq-title">Frequently Asked Questions</h2>
-  <p class="faq-subtitle">Quick answers about all your favorite tools</p>
 
-  <div class="faq-container">    <div class="faq-item">
-      <button class="faq-question">✏️ What does the text cleaner do?</button>
-      <div class="faq-answer">
-        <p>It removes extra spaces, line breaks, unwanted symbols, and formatting from your text—perfect for cleaning copy-pasted content.</p>
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-question">🧹 Is my text stored or saved?</button>
-      <div class="faq-answer">
-        <p>Nope. Everything runs in your browser. Nothing is uploaded or stored on any server.</p>
-      </div>
-    </div>
-    </section>
-
-        <div class="ad-placeholder">        <script async="async" data-cfasync="false"
-                src="https://pl28329885.effectivegatecpm.com/4e970230fcd96c508ce5e0c902bc05a0/invoke.js"></script></div>
+        <div class="ad-placeholder">
+            <script async="async" data-cfasync="false"
+                src="https://pl28329885.effectivegatecpm.com/4e970230fcd96c508ce5e0c902bc05a0/invoke.js"></script>
+        </div>
     </main>
 
     <footer>
         <p>&copy; 2025 ToolNest. All rights reserved.</p>
         <p>
             <a href="../index.html">Home</a> |
-            <a href="text-document-tools.html">PDF Tools</a> |
+            <a href="pdf-tools.html">PDF Tools</a> |
             <a href="image-tools.html">Image Tools</a> |
             <a href="#">Privacy Policy</a>
         </p>
@@ -257,30 +238,9 @@
             nav.classList.toggle('open');
         }
     </script>
-
- <script src="https://www.effectivegatecpm.com/y2zxerbvp?key=17eb9c63da70660abcc1568a3ddec06d"></script>
+    <script>https://www.effectivegatecpm.com/y2zxerbvp?key=17eb9c63da70660abcc1568a3ddec06d</script>
     <script src="https://pl28329842.effectivegatecpm.com/42/2d/58/422d58d94e73c60767143f538a8d1c3b.js"></script>
-    <script>
-        atOptions = {
-            'key': '614219578c19854d116d8e4625d89995',
-            'format': 'iframe',
-            'height': 50,
-            'width': 320,
-            'params': {}
-        };
-    </script>
 
-    <script>
-document.querySelectorAll('.faq-question').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const item = btn.parentElement;
-    item.classList.toggle('active');
-  });
-});
-</script>
-
-    <script src="https://www.highperformanceformat.com/614219578c19854d116d8e4625d89995/invoke.js"></script>
-<script src="https://pl28329842.effectivegatecpm.com/42/2d/58/422d58d94e73c60767143f538a8d1c3b.js"></script>
 </body>
 
 </html>

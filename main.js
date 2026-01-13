@@ -224,5 +224,5 @@ function scrollToSection(id) {
 function goToTool(page) {
   window.location.href = `tools/${page}`;
 }
-
-
+window.scrollToSection = scrollToSection;
+window.goToTool = goToTool;

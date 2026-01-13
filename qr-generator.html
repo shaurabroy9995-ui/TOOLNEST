@@ -1,19 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head><title>qr-generator – ToolNest</title>
-<meta name="description" content="Resize images online, convert PNG, JPG, WebP instantly. Free, fast, and privacy-friendly image tools by ToolNest.">
-<meta name="description" content="Generate QR codes online for URLs, text, or files instantly. Free and easy to use.">
-<meta name="keywords" content="QR code generator, create QR code, online QR tool, free QR code">
-<meta property="og:title" content="QR Code Generator - Toolnest">
-<meta property="og:description" content="Create QR codes online instantly for any URL or text.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://tlnst.netlify.app/tools/qr-generator">
-
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QR Code Generator - ToolNest</title>
-    <link rel="icon" href="/favicon-32x32.png">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script defer src="../JS/main.js"></script>
@@ -38,14 +29,95 @@
             }, 800);
         })();
     </script>
+    <style>
+
+/* General mobile styles */
+@media (max-width: 768px) {
+  body {
+    font-size: 16px; /* Adjust font size for mobile */
+  }
+
+  .header-inner {
+    padding: 10px 15px; /* Adjust padding for smaller screens */
+  }
+
+  .logo {
+    font-size: 1.2rem; /* Adjust logo size */
+  }
+
+  nav a {
+    padding: 10px 15px; /* Increase padding for easier tappable links */
+    font-size: 14px; /* Adjust font size */
+  }
+
+  .container {
+    padding: 15px; /* Increase padding inside tool pages */
+  }
+
+  .tool-page {
+    padding: 20px; /* Increase padding inside tool pages */
+  }
+
+  .tool-panel {
+    padding: 20px; /* Increase padding inside panels */
+    margin-bottom: 20px; /* Space below panels */
+  }
+
+  .tool-title {
+    font-size: 1.8rem; /* Adjust title font size */
+  }
+
+  .tool-subtitle {
+    font-size: 1.2rem; /* Adjust subtitle font size */
+  }
+
+  .tool-input-group,
+  .tool-button-group {
+    margin-bottom: 15px; /* Space below input and button groups */
+  }
+
+  .tool-file-input {
+    padding: 12px; /* Increase padding for file input */
+    font-size: 14px; /* Adjust font size */
+  }
+
+  .file-input-text {
+    font-size: 12px; /* Adjust font size */
+  }
+
+  .file-input-button {
+    padding: 10px 20px; /* Increase padding for buttons */
+    font-size: 14px; /* Adjust font size */
+  }
+
+  .result-item {
+    padding: 10px; /* Increase padding for result items */
+    font-size: 14px; /* Adjust font size */
+  }
+}
+
+/* Adjust for smaller phones */
+@media (max-width: 480px) {
+  .tool-page {
+      padding: 10px; /* Reduce padding on very small screens */
+  }
+
+  .tool-title {
+      font-size: 1.6rem; /* Smaller title font size */
+  }
+
+  .tool-subtitle {
+      font-size: 1.1rem; /* Smaller subtitle font size */
+  }
+}
+
+    </style>
 </head>
 
 <body>
     <header>
         <div class="header-inner">
-                        <a href="/" class="logo">
-                <img src="ChatGPT_Image_Dec_26__2025__11_27_22_PM-removebg-preview.png" alt="ToolNest Logo">
-            </a>
+            <a href="../index.html" class="logo">ToolNest</a>
             <button class="nav-toggle" onclick="toggleNav()">
                 <span class="hamburger"></span>
             </button>
@@ -72,15 +144,57 @@
         <section class="panel">
             <div class="lead">📌 Enter Content</div>
             <input type="text" id="qrText" placeholder="Enter text, URL, email, phone number, or any content..." />
-            <div id="qrError" style="display:none;color:#b00020;margin-top:0.6rem;font-size:0.95rem;"></div>
-            <button id="generateBtn" class="btn-cta" style="margin-top: 1rem;">Generate QR Code</button>
+            <div id="qrError"></div>
+            <button id="generateBtn" class="btn-cta">Generate QR Code</button>
         </section>
+
+
+
+
+        <!-- QR Customization Options -->
+<section class="panel" id="qrCustomizer">
+    <div class="lead">🎨 Customize QR Code</div>
+
+    <div class="tool-input-group">
+        <label>QR Color</label>
+        <input type="color" id="qrColor" value="#000000">
+    </div>
+
+    <div class="tool-input-group">
+        <label>Background Color</label>
+        <input type="color" id="qrBgColor" value="#ffffff">
+    </div>
+
+   <div class="tool-input-group">
+    <label>Upload Logo (Center)</label>
+    <input type="file" id="qrLogo" accept="image/*" class="tool-file-input custom-file-input">
+    <label for="qrLogo" class="file-input-button">Choose File</label>
+</div>
+
+    <div class="tool-input-group">
+        <label>Logo Size</label>
+        <input type="file" id="qrLogo" accept="image/*" class="tool-file-input custom-file-input">
+    </div>
+
+    <div class="tool-input-group">
+        <label>Error Correction</label>
+        <select id="qrErrorLevel">
+            <option value="L">Low</option>
+            <option value="M" selected>Medium</option>
+            <option value="Q">Quartile</option>
+            <option value="H">High</option>
+        </select>
+    </div>
+</section>
+
+
+
 
         <!-- QR Code Display -->
         <section class="panel" id="qrResult" style="display: none;">
             <div class="lead">✨ Your QR Code</div>
-            <div id="qrTarget" style="display: flex; justify-content: center; margin: 1.5rem 0; padding: 1rem; background: var(--accent-soft); border-radius: 12px;"></div>
-            <div style="display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap;">
+            <div id="qrTarget" ></div>
+            <div >
                 <button id="downloadQR" class="btn-primary">Download QR Code</button>
                 <button id="clearQR" class="btn-primary">Generate New</button>
             </div>
@@ -103,9 +217,9 @@
         </section>
 
         <!-- How to Use Section -->
-        <section class="panel" style="background: linear-gradient(135deg, var(--accent-soft), rgba(52, 179, 255, 0.02));">
+        <section class="panel">
             <div class="lead">📖 How to Use</div>
-            <ol style="color: #555; line-height: 1.9; margin-left: 1.5rem;">
+            <ol>
                 <li><strong>Enter Content:</strong> Type or paste text, URL, email, phone number, or any data</li>
                 <li><strong>Generate:</strong> Click "Generate QR Code" to instantly create your QR code</li>
                 <li><strong>Preview:</strong> See your QR code displayed immediately on the screen</li>
@@ -117,10 +231,10 @@
         <!-- Features List -->
         <section class="panel">
             <div class="lead">⚙️ QR Code Features</div>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 1rem;">
+            <div>
                 <div>
-                    <h4 style="color: var(--accent); font-weight: 700; margin-bottom: 0.8rem;">📌 Input Types Supported</h4>
-                    <ul style="list-style: none; color: #666; line-height: 1.8; font-size: 0.9rem;">
+                    <h4>📌 Input Types Supported</h4>
+                    <ul>
                         <li>✓ Website URLs</li>
                         <li>✓ Email addresses</li>
                         <li>✓ Phone numbers</li>
@@ -129,8 +243,8 @@
                     </ul>
                 </div>
                 <div>
-                    <h4 style="color: var(--accent); font-weight: 700; margin-bottom: 0.8rem;">🎨 QR Code Options</h4>
-                    <ul style="list-style: none; color: #666; line-height: 1.8; font-size: 0.9rem;">
+                    <h4>🎨 QR Code Options</h4>
+                    <ul>
                         <li>✓ Adjustable size</li>
                         <li>✓ High resolution</li>
                         <li>✓ Error correction</li>
@@ -139,8 +253,8 @@
                     </ul>
                 </div>
                 <div>
-                    <h4 style="color: var(--accent); font-weight: 700; margin-bottom: 0.8rem;">💾 Export Options</h4>
-                    <ul style="list-style: none; color: #666; line-height: 1.8; font-size: 0.9rem;">
+                    <h4 >💾 Export Options</h4>
+                    <ul>
                         <li>✓ PNG format</li>
                         <li>✓ SVG vector</li>
                         <li>✓ Print quality</li>
@@ -152,9 +266,9 @@
         </section>
 
         <!-- Tips Section -->
-        <section class="panel" style="border-left: 5px solid var(--accent-warm);">
+        <section class="panel">
             <div class="lead">💡 Pro Tips</div>
-            <ul style="color: #666; line-height: 2; margin-left: 1.5rem;">
+            <ul>
                 <li><strong>URL Shortening:</strong> Long URLs work best when shortened before encoding</li>
                 <li><strong>Test First:</strong> Scan your QR code with multiple devices to ensure compatibility</li>
                 <li><strong>Size Matters:</strong> Larger QR codes scan faster, but smaller ones work fine</li>
@@ -163,25 +277,7 @@
             </ul>
         </section>
 
- <section class="faq-section" id="faq">
-  <h2 class="faq-title">Frequently Asked Questions</h2>
-  <p class="faq-subtitle">Quick answers about all your favorite tools</p>
-
-  <div class="faq-container">  <div class="faq-item">
-      <button class="faq-question">📱 What kind of data can I turn into a QR code?</button>
-      <div class="faq-answer">
-        <p>You can create QR codes for URLs, text, contact info, Wi-Fi details, or anything else that fits within QR code limits.</p>
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-question">🎨 Can I customize my QR code?</button>
-      <div class="faq-answer">
-        <p>Absolutely! You can change color, size, and margin. Some generators even support adding your logo in the center.</p>
-      </div>
-    </div>
-</section>
-        <div class="ad-placeholder">        <script async="async" data-cfasync="false"
+        <div class="ad-placeholder">           <script async="async" data-cfasync="false"
                 src="https://pl28329885.effectivegatecpm.com/4e970230fcd96c508ce5e0c902bc05a0/invoke.js"></script></div>
     </main>
 
@@ -190,7 +286,7 @@
         <p>
             <a href="../index.html">Home</a> |
             <a href="text-cleaner.html">Text Cleaner</a> |
-            <a href="text-document-tools.html">PDF Tools</a> |
+            <a href="pdf-tools.html">PDF Tools</a> |
             <a href="#">Privacy Policy</a>
         </p>
         <p>Follow us:
@@ -220,29 +316,14 @@
         });
     </script>
 
-    <script>
-document.querySelectorAll('.faq-question').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const item = btn.parentElement;
-    item.classList.toggle('active');
-  });
-});
-</script>
 
 
- <script src="https://www.effectivegatecpm.com/y2zxerbvp?key=17eb9c63da70660abcc1568a3ddec06d"></script>
+
+
+
+    <script>https://www.effectivegatecpm.com/y2zxerbvp?key=17eb9c63da70660abcc1568a3ddec06d</script>
     <script src="https://pl28329842.effectivegatecpm.com/42/2d/58/422d58d94e73c60767143f538a8d1c3b.js"></script>
-    <script>
-        atOptions = {
-            'key': '614219578c19854d116d8e4625d89995',
-            'format': 'iframe',
-            'height': 50,
-            'width': 320,
-            'params': {}
-        };
-    </script>
-    <script src="https://www.highperformanceformat.com/614219578c19854d116d8e4625d89995/invoke.js"></script>
-<script src="https://pl28329842.effectivegatecpm.com/42/2d/58/422d58d94e73c60767143f538a8d1c3b.js"></script>
+
 </body>
 
 </html>

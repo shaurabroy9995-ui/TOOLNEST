@@ -2,19 +2,8 @@
 <html lang="en">
 
 <head>
-    <title>pdf-merger/split – ToolNest</title>
-    <meta name="description"
-        content="Merge or split PDF files online quickly and securely. Easy-to-use PDF tool for all your document needs.">
-    <meta name="keywords" content="PDF merge, PDF split, online PDF tools, free PDF editor">
-    <meta property="og:title" content="PDF Merge & Split - Toolnest">
-    <meta property="og:description" content="Merge or split PDF files online quickly and securely.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://tlnst.netlify.app/tools/text-document-tools">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="Toolnest">
-    <meta name="robots" content="index, follow">
-    <link rel="icon" href="/favicon-32x32.png">
-<link rel="stylesheet" href="style.css">
     <title>PDF Merge / Split - ToolNest</title>
     <link rel="stylesheet" href="style.css">
     <script defer src="../JS/main.js"></script>
@@ -426,9 +415,7 @@
 <body>
     <header>
         <div class="header-inner">
-            <a href="/" class="logo">
-                <img src="ChatGPT_Image_Dec_26__2025__11_27_22_PM-removebg-preview.png" alt="ToolNest Logo">
-            </a>
+            <a href="../index.html" class="logo">ToolNest</a>
             <button class="nav-toggle" onclick="toggleNav()">
                 <span class="hamburger"></span>
             </button>
@@ -624,28 +611,6 @@
             </ul>
         </section>
 
- <section class="faq-section" id="faq">
-  <h2 class="faq-title">Frequently Asked Questions</h2>
-  <p class="faq-subtitle">Quick answers about all your favorite tools</p>
-
-  <div class="faq-container">  <div class="faq-item">
-      <button class="faq-question">📚 Can I merge multiple PDFs into one file?</button>
-      <div class="faq-answer">
-        <p>Yes! Upload two or more PDFs and merge them instantly into a single document—all inside your browser using client-side tools.</p>
-      </div>
-    </div>
-
-    <div class="faq-item">
-      <button class="faq-question">✂️ Can I split a PDF into individual pages?</button>
-      <div class="faq-answer">
-        <p>Definitely. Upload your PDF, and it will create separate files for each page. You can download them individually or as a ZIP.</p>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-
         <div class="ad-placeholder">
             <script async="async" data-cfasync="false"
                 src="https://pl28329885.effectivegatecpm.com/4e970230fcd96c508ce5e0c902bc05a0/invoke.js"></script>
@@ -685,6 +650,13 @@
         let splitFile = null;
 
         // Make containers clickable
+        document.getElementById('mergeDropZone').addEventListener('click', function () {
+            document.getElementById('pdfFiles').click();
+        });
+
+        document.getElementById('splitDropZone').addEventListener('click', function () {
+            document.getElementById('pdfFilesSplit').click();
+        });
 
         // File input handlers
         document.getElementById('pdfFiles').addEventListener('change', function (e) {
@@ -1042,16 +1014,6 @@
         updateMergeUI();
         updateSplitUI();
     </script>
-
-<script>
-document.querySelectorAll('.faq-question').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const item = btn.parentElement;
-    item.classList.toggle('active');
-  });
-});
-</script>
-
 
     <script>https://www.effectivegatecpm.com/y2zxerbvp?key=17eb9c63da70660abcc1568a3ddec06d</script>
     <script src="https://pl28329842.effectivegatecpm.com/42/2d/58/422d58d94e73c60767143f538a8d1c3b.js"></script>

@@ -161,3 +161,18 @@ function terminateWorker() { if (worker) { try { worker.terminate(); } catch (e)
 window.addEventListener('beforeunload', () => { terminateWorker(); });
 window.terminateImageWorker = terminateWorker;
 
+function toggleNav() {
+  const nav = document.querySelector('nav');
+  nav.classList.toggle('open');
+  document.body.classList.toggle('nav-open');
+}
+
+
+
+
+function toggleNav() {
+    const nav = document.querySelector('nav');
+    const navToggle = document.querySelector('.nav-toggle');
+    nav.classList.toggle('open');
+    navToggle.classList.toggle('active');
+}

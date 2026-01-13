@@ -38,3 +38,19 @@ document.getElementById('encodeBtn')?.addEventListener('click', base64Encode);
 document.getElementById('decodeBtn')?.addEventListener('click', base64Decode);
 document.getElementById('clearBase64Btn')?.addEventListener('click', clearBase64);
 document.getElementById('copyBase64Btn')?.addEventListener('click', copyRes);
+
+
+function toggleNav() {
+  const nav = document.querySelector('nav');
+  nav.classList.toggle('open');
+  document.body.classList.toggle('nav-open');
+}
+
+
+
+function toggleNav() {
+    const nav = document.querySelector('nav');
+    const navToggle = document.querySelector('.nav-toggle');
+    nav.classList.toggle('open');
+    navToggle.classList.toggle('active');
+}

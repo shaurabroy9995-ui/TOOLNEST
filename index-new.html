@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta Tags & SEO -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ToolNest - Your free hub for everyday online tools. Convert images, merge PDFs, generate QR codes, encode/decode base64, and clean text - all in your browser, no account needed.">
+    <meta name="keywords" content="online tools, image converter, PDF merger, QR code generator, base64 encoder, text cleaner, free tools">
+    <meta name="author" content="ToolNest">
+    <meta name="theme-color" content="#2563eb">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="English">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://toolnest.example.com">
+    <meta property="og:title" content="ToolNest — Free Browser Tools">
+    <meta property="og:description" content="Fast, simple, and completely free online tools for daily tasks">
+    <meta property="og:image" content="https://toolnest.example.com/og-image.png">
+    <meta property="og:site_name" content="ToolNest">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://toolnest.example.com">
+    <meta name="twitter:title" content="ToolNest — Free Browser Tools">
+    <meta name="twitter:description" content="Fast, simple, and completely free online tools">
+    <meta name="twitter:image" content="https://toolnest.example.com/twitter-image.png">
+    <meta name="twitter:creator" content="@toolnest">
+    
+    <!-- Additional Meta Tags -->
+    <meta name="google-site-verification" content="your-google-verification-code">
+    <meta name="msapplication-TileColor" content="#2563eb">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="favicon.png">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles-new.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://toolnest.example.com/">
+    
+    <title>ToolNest — Free Browser Tools | Image, PDF, QR & Text Utilities</title>
+</head>
+
+<body>
+
+    <!-- Skip to main content link for accessibility -->
+    <a href="#main" class="sr-only">Skip to main content</a>
+
+    <!-- Header Navigation -->
+    <header role="banner">
+        <div class="header-inner container">
+            <a href="/" class="logo" aria-label="ToolNest home">ToolNest</a>
+            
+            <button class="nav-toggle" onclick="toggleNav()" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="main-nav">
+                <span class="hamburger" aria-hidden="true"></span>
+            </button>
+            
+            <nav id="main-nav" aria-label="Main navigation" role="navigation">
+                <button class="nav-close" onclick="toggleNav()" aria-label="Close menu">✕</button>
+                <a href="/" aria-current="page">Home</a>
+                <a href="#tools">Tools</a>
+                <a href="tools/image-tools.html">Image Tools</a>
+                <a href="tools/qr-generator.html">QR Generator</a>
+                <a href="tools/base64-tools.html">Utilities</a>
+                <a href="support.html">Support</a>
+                <a href="privacy.html">Privacy</a>
+                <button class="btn btn-primary btn-sm" onclick="openDonateModal()" aria-label="Donate to support ToolNest">Donate</button>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main" role="main">
+
+        <!-- Hero Section -->
+        <section class="hero" role="region" aria-labelledby="hero-title">
+            <div class="container">
+                <div class="hero-inner">
+                    <h1 id="hero-title">ToolNest</h1>
+                    <p class="tagline">Fast, Simple and Completely Free</p>
+                    <p class="subline">Your one-stop hub for everyday online tools. All processing happens locally in your browser — your data never leaves your device.</p>
+                    <button class="btn btn-primary btn-lg" onclick="scrollToSection('tools')" aria-label="View available tools">
+                        Explore Tools <span aria-hidden="true">→</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about" role="region" aria-labelledby="about-title">
+            <div class="container container-md">
+                <h2 id="about-title">About ToolNest</h2>
+                <p>
+                    ToolNest provides fast, privacy-friendly browser-based utilities that help you accomplish everyday tasks instantly. From merging PDFs to generating QR codes, from resizing images to encoding text — no accounts, no friction, no data collection.
+                </p>
+                <div class="grid grid-3 mt-8">
+                    <div class="feature-card">
+                        <div class="feature-icon">🔒</div>
+                        <h3>100% Private</h3>
+                        <p>All processing happens in your browser. We never store or see your data.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Lightning Fast</h3>
+                        <p>No server requests. Instant results. Zero latency.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🆓</div>
+                        <h3>Completely Free</h3>
+                        <p>No subscriptions, no hidden costs, no ads (unless you want to support us).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tools Section -->
+        <section class="tools" id="tools" role="region" aria-labelledby="tools-title">
+            <div class="container">
+                <h2 id="tools-title" class="text-center">Available Tools</h2>
+                <p class="text-center text-secondary mb-12">Select a tool below to get started</p>
+                
+                <div class="grid grid-2">
+                    <!-- Image Tools Card -->
+                    <article class="tool-card">
+                        <div class="tool-card-header">
+                            <div class="tool-icon" role="img" aria-label="Image resizer and converter">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="3" y="3" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <circle cx="8.5" cy="9.5" r="1.6" fill="currentColor"/>
+                                    <path d="M21 12L15 6M15 6L21 12M21 12L15 18M15 18L21 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <h3>Image Resizer & Converter</h3>
+                        </div>
+                        <p>Resize images, convert between PNG and JPG, optimize file sizes. All in your browser with no quality loss.</p>
+                        <ul class="tool-features" aria-label="Image tool features">
+                            <li>✓ Resize to custom dimensions</li>
+                            <li>✓ PNG ↔ JPG conversion</li>
+                            <li>✓ Batch processing</li>
+                            <li>✓ Quality adjustment</li>
+                        </ul>
+                        <a href="tools/image-tools.html" class="btn btn-primary w-full mt-6">Open Image Tools</a>
+                    </article>
+
+                    <!-- QR Code Generator Card -->
+                    <article class="tool-card">
+                        <div class="tool-card-header">
+                            <div class="tool-icon" role="img" aria-label="QR code generator">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <rect x="3" y="3" width="8" height="8" fill="currentColor"/>
+                                    <rect x="13" y="3" width="8" height="8" fill="currentColor"/>
+                                    <rect x="3" y="13" width="8" height="8" fill="currentColor"/>
+                                    <rect x="6" y="6" width="2" height="2" fill="white"/>
+                                    <rect x="16" y="6" width="2" height="2" fill="white"/>
+                                    <rect x="6" y="16" width="2" height="2" fill="white"/>
+                                </svg>
+                            </div>
+                            <h3>QR Code Generator</h3>
+                        </div>
+                        <p>Create QR codes for URLs, text, contact information, and more. Download as PNG or SVG.</p>
+                        <ul class="tool-features" aria-label="QR generator features">
+                            <li>✓ URL QR codes</li>
+                            <li>✓ Text encoding</li>
+                            <li>✓ vCard support</li>
+                            <li>✓ Custom styling</li>
+                        </ul>
+                        <a href="tools/qr-generator.html" class="btn btn-primary w-full mt-6">Generate QR Codes</a>
+                    </article>
+
+                    <!-- PDF Tools Card -->
+                    <article class="tool-card">
+                        <div class="tool-card-header">
+                            <div class="tool-icon" role="img" aria-label="PDF merger and splitter">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M3 7H21M3 12H21M3 17H21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                    <path d="M5 3H19C20.1046 3 21 3.89543 21 5V19C21 20.1046 20.1046 21 19 21H5C3.89543 21 3 20.1046 3 19V5C3 3.89543 3.89543 3 5 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <h3>PDF Merger & Splitter</h3>
+                        </div>
+                        <p>Merge multiple PDFs into one or split PDFs into individual pages. No file size limits.</p>
+                        <ul class="tool-features" aria-label="PDF tool features">
+                            <li>✓ Merge PDFs</li>
+                            <li>✓ Split/extract pages</li>
+                            <li>✓ Drag & drop support</li>
+                            <li>✓ Reorder pages</li>
+                        </ul>
+                        <a href="tools/text-document-tools.html" class="btn btn-primary w-full mt-6">Manage PDFs</a>
+                    </article>
+
+                    <!-- Text Tools Card -->
+                    <article class="tool-card">
+                        <div class="tool-card-header">
+                            <div class="tool-icon" role="img" aria-label="Text cleaner">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M3 6H21M6 10H18M9 14H15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <h3>Text Cleaner</h3>
+                        </div>
+                        <p>Remove extra spaces, HTML tags, emojis, and special characters. Clean messy text instantly.</p>
+                        <ul class="tool-features" aria-label="Text cleaner features">
+                            <li>✓ Remove extra spaces</li>
+                            <li>✓ Strip HTML tags</li>
+                            <li>✓ Remove emojis</li>
+                            <li>✓ Text statistics</li>
+                        </ul>
+                        <a href="tools/text-cleaner.html" class="btn btn-primary w-full mt-6">Clean Text</a>
+                    </article>
+
+                    <!-- Base64 Tools Card -->
+                    <article class="tool-card">
+                        <div class="tool-card-header">
+                            <div class="tool-icon" role="img" aria-label="Base64 encoder decoder">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M4 7H20M4 12H20M4 17H20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                    <path d="M9 3L3 7V17C3 18.1046 3.89543 19 5 19H19C20.1046 19 21 18.1046 21 17V7L15 3H9Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </div>
+                            <h3>Base64 Encoder/Decoder</h3>
+                        </div>
+                        <p>Encode text and files to Base64 or decode Base64 back to original format. Fast and reliable.</p>
+                        <ul class="tool-features" aria-label="Base64 tool features">
+                            <li>✓ Text encoding</li>
+                            <li>✓ File encoding</li>
+                            <li>✓ Batch processing</li>
+                            <li>✓ URL-safe Base64</li>
+                        </ul>
+                        <a href="tools/base64-tools.html" class="btn btn-primary w-full mt-6">Encode/Decode</a>
+                    </article>
+
+                    <!-- More Tools Coming -->
+                    <article class="tool-card tool-card-coming-soon">
+                        <div class="tool-card-header">
+                            <div class="tool-icon" role="img" aria-label="More tools coming soon">✨</div>
+                            <h3>More Tools Coming Soon</h3>
+                        </div>
+                        <p>We're working on more awesome tools. Check back soon for updates on new features and tools.</p>
+                        <button class="btn btn-secondary w-full mt-6" onclick="openNotifyModal()" aria-label="Get notified when new tools are released">Notify Me</button>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section" role="region" aria-labelledby="cta-title">
+            <div class="container container-md text-center">
+                <h2 id="cta-title">Made with ❤️ by the community</h2>
+                <p>ToolNest is open source and maintained by volunteers. If you find it useful, consider supporting us.</p>
+                <div class="flex gap-4 justify-center mt-8">
+                    <button class="btn btn-primary" onclick="openDonateModal()">Donate</button>
+                    <a href="https://github.com" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">View Source</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer role="contentinfo">
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-section">
+                    <h4>ToolNest</h4>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="#tools">Tools</a></li>
+                        <li><a href="support.html">Support</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Tools</h4>
+                    <ul>
+                        <li><a href="tools/image-tools.html">Image Tools</a></li>
+                        <li><a href="tools/qr-generator.html">QR Generator</a></li>
+                        <li><a href="tools/text-document-tools.html">PDF Tools</a></li>
+                        <li><a href="tools/base64-tools.html">Base64 Tools</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="https://twitter.com/toolnest" target="_blank" rel="noopener noreferrer">Twitter</a></li>
+                        <li><a href="https://github.com/toolnest" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+                        <li><a href="https://discord.gg/toolnest" target="_blank" rel="noopener noreferrer">Discord</a></li>
+                        <li><a href="mailto:hello@toolnest.example">Email</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="cookies.html">Cookie Policy</a></li>
+                        <li><a href="disclaimer.html">Disclaimer</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ToolNest. All rights reserved. Made with ❤️ by <a href="https://gourab.dev">Gourab Roy</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Donation Modal -->
+    <div id="donateModal" class="modal" role="dialog" aria-labelledby="donateTitle" aria-hidden="true">
+        <div class="modal-overlay" onclick="closeDonateModal()"></div>
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeDonateModal()" aria-label="Close donation dialog">✕</button>
+            <h2 id="donateTitle">Support ToolNest</h2>
+            <p>Help us keep ToolNest free and ad-free for everyone.</p>
+            <div class="donation-options">
+                <a href="https://paypal.me/toolnest" class="btn btn-primary w-full mb-4" target="_blank" rel="noopener noreferrer">Donate via PayPal</a>
+                <a href="https://buymeacoffee.com/toolnest" class="btn btn-secondary w-full" target="_blank" rel="noopener noreferrer">Buy Me a Coffee</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notify Modal -->
+    <div id="notifyModal" class="modal" role="dialog" aria-labelledby="notifyTitle" aria-hidden="true">
+        <div class="modal-overlay" onclick="closeNotifyModal()"></div>
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeNotifyModal()" aria-label="Close notification dialog">✕</button>
+            <h2 id="notifyTitle">Get Notified</h2>
+            <p>Enter your email to be notified when new tools are released.</p>
+            <form onsubmit="subscribeEmail(event)" class="form-group">
+                <input type="email" placeholder="your@email.com" required aria-label="Email address">
+                <button type="submit" class="btn btn-primary w-full mt-4">Notify Me</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script defer src="JS/main.js"></script>
+    <script defer src="JS/utils.js"></script>
+    
+    <!-- Google Analytics (Optional) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+
+</body>
+
+</html>
